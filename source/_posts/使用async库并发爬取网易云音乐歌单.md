@@ -1,5 +1,5 @@
 ---
-title: 使用async库并发爬取网易云音乐歌单
+title: 使用async库结合puppeteer并发爬取网易云音乐歌单(简易demo)
 date: 2018-11-09 17:09:35
 tags:
 ---
@@ -48,5 +48,5 @@ mapLimit(type,5,(type,callback)=>{
 
 ```
 result:
-    ![](/images/album_list.png)
+    ![](/blog/images/album_list.png)
 
