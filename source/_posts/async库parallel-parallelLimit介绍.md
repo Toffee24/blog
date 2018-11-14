@@ -13,8 +13,8 @@ async.js是一个功能强大的node异步流程控制库,parallel是async中用
 
 ```javaScript
 const parallel = require('async/parallel')
-
 const time = new Date().getTime()
+
 parallel([(callback)=>{
 	setTimeout(()=>{
 		callback(null,'one')
@@ -45,6 +45,9 @@ parallelLimit基本功能和parallel是一样的,不过它新增一个参数,用
 |callback| Function | (可选)返回一个数组或者对象,参数(err,result)
 
 ```javaScript
+const parallelLimit = require('async/parallelLimit')
+const time = new Date().getTime()
+
 parallelLimit([(callback)=>{
 	setTimeout(()=>{
 		callback(null,'one')
