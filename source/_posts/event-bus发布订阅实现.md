@@ -4,7 +4,7 @@ date: 2018-12-12 17:10:15
 tags:
 ---
 
-一个简单的事件发布订阅实现
+一个简单的实现了事件注册,订阅,注销的eventEmeitter
 
 ```javaScript
 class EventEmeitter{
