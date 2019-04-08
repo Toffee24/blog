@@ -1,0 +1,61 @@
+---
+title: 指数运算性能比较
+date: 2019-03-07 09:40:53
+tags:
+---
+
+### 自定义递归函数
+```javaScript
+function calculateExponent(base,exponent){
+    if(exponent == 1) return base
+    return base * calculateExponent(base,--exponent)
+}
+```
+
+### Math.pow()
+Math.pow() 函数返回基数（base）的指数（exponent）次幂，即 base^exponent。
+
+### ES7指数操作符
+在ES7中引入了指数运算符`**`
+```
+2 ** 2 // 4
+```
+
+### 比较性能(测试环境 v8)
+比较使用`console.time`和`console.timeEnd`方法,得出运算耗时
+```JavaScript
+//依次比较10次幂,100次幂,1000次幂,10000次幂循环100次耗时
+console.time()
+for(let i =0;i<100;i++){
+    calculateExponent(i,10)
+}
+console.timeEnd()
+
+console.time()
+for(let i =0;i<100;i++){
+    Math.pow(i,10)
+}
+console.timeEnd()
+
+console.time()
+for(let i =0;i<100;i++){
+   i ** 10
+}
+console.timeEnd()
+```
+
+### 结果
+得出四次结果耗时
+```
+['10', 0.2, 0.052, 0.052],
+['100', 0.503, 0.057, 0.089],
+['1000', 3.273, 0.090, 0.083],
+['10000', 28.346, 0.081, 0.120]
+```
+![](/blog/images/compare_result_1.png)
+
+可以发现递归函数时间大大多于其他两个方法,那么剔除递归函数的结果再看:
+
+![](/blog/images/compare_result_2.png)
+
+根据图可以发现,两个方法在不同数量级耗费的时间有长有短,在**1000**数量级时候`**`运算符时间却少于`Math.pow`,来到**10000**数量级时`**`运算符时间大幅度长于`Math.pow`,我们可以根据实际情况选择使用`**`还是`Math.pow`

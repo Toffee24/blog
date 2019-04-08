@@ -1,5 +1,5 @@
 ---
-title: rx.js初探
+title: RxJs初探
 date: 2018-12-29 16:10:30
 tags:
 ---
