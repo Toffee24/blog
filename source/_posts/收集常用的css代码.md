@@ -203,5 +203,5 @@ vertical-align: top;
   img{
     vertical-align: middle;
   }
-}1
+}
 ```
