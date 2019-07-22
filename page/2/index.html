@@ -326,6 +326,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/05/25/gulp配置react开发环境/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/05/25/gulp配置react开发环境/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/2/index.html">gulp配置react开发环境</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-25 22:18:21 / 修改时间：22:47:42" itemprop="dateCreated datePublished" datetime="2019-05-25T22:18:21+08:00">2019-05-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="gulp与webpack"><a href="#gulp与webpack" class="headerlink" title="gulp与webpack"></a>gulp与webpack</h3><p>gulp是对文件的处理,是Task Runner,节省了手动编译,手动打包这一步,但是单纯使用gulp没法去解决js中引入module的问题,可能会遇到项目中明明引入了babel语法转换,为什么浏览器会提示<code>require is not defined</code>报错,这是因为babel只解析语法,并不会去管js的模块引入。<br>而webpack解决了require的问题,根据不同的文件转换需求引入不同的loader,最后打包出符合相应规则的静态资源文件。</p>
+<h3 id="Browserify-让浏览器加载Node模块"><a href="#Browserify-让浏览器加载Node模块" class="headerlink" title="Browserify-让浏览器加载Node模块"></a>Browserify-让浏览器加载Node模块</h3><p><img src="/blog/images/browserify.png" width="50%"></p>
+<p>官方文档开头介绍:<code>require(&#39;modules&#39;) in the browser</code></p>
+<p>目前NPM的包大多都是通过CMD的方式打包的，除了特定的可以使用CMD模块加载器加载的模块，大部分nodejs模块无法直接使用到浏览器环境中。<br>Browserify是一个供浏览器环境使用的模块打包工具，像在node环境一样，也是通过require(‘modules’)来组织模块之间的引用和依赖，既可以引用npm中的模块，也可以引用自己写的模块，然后打包成js文件，再在页面中通过<code>&lt;script&gt;</code>标签加载。</p>
+<h3 id="Browserify-transform"><a href="#Browserify-transform" class="headerlink" title="Browserify.transform"></a>Browserify.transform</h3><p>指定转换模块,在打包过程中自动执行,在这里需要结合babel进行语法转换</p>
+<h3 id="详细配置"><a href="#详细配置" class="headerlink" title="详细配置"></a>详细配置</h3><p>react语法解析主要用到babel的<code>@babel/preset-react</code>插件,此外还会使用到<code>browserSync</code>进行自动检测刷新,<code>less</code>预处理<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>) <span class="comment">//引入gulp</span></span><br><span class="line"><span class="keyword">const</span> less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>) <span class="comment">//引入gulp-less处理less语法</span></span><br><span class="line"><span class="keyword">const</span> LessAutoprefix = <span class="built_in">require</span>(<span class="string">'less-plugin-autoprefix'</span>) <span class="comment">//css兼容前缀</span></span><br><span class="line"><span class="keyword">const</span> autoprefix = <span class="keyword">new</span> LessAutoprefix(&#123;</span><br><span class="line">    browsers: [<span class="string">'last 2 versions'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> del = <span class="built_in">require</span>(<span class="string">'del'</span>) <span class="comment">//删除文件模块,在每次gulp任务前执行</span></span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">'gulp-babel'</span>) <span class="comment">//babel</span></span><br><span class="line"><span class="keyword">const</span> browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).create() <span class="comment">//自动刷新</span></span><br><span class="line"><span class="keyword">const</span> reload = browserSync.reload <span class="comment">//reload示例,用于浏览器刷新</span></span><br><span class="line"><span class="keyword">const</span> browserify = <span class="built_in">require</span>(<span class="string">'browserify'</span>) <span class="comment">//模块处理</span></span><br><span class="line"><span class="keyword">const</span> source = <span class="built_in">require</span>(<span class="string">'vinyl-source-stream'</span>) <span class="comment">//将browerify流转换成gulp文件流</span></span><br><span class="line"><span class="keyword">const</span> babelify = <span class="built_in">require</span>(<span class="string">'babelify'</span>) <span class="comment">//用于browserify的babel编译器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//主任务</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">    (<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">        <span class="keyword">await</span> del.sync(<span class="string">'dist'</span>)</span><br><span class="line">        <span class="comment">//less</span></span><br><span class="line">        gulp.src(<span class="string">'./src/index.less'</span>).pipe(less(&#123;</span><br><span class="line">            plugins: [autoprefix]</span><br><span class="line">        &#125;)).pipe(gulp.dest(<span class="string">'./dist'</span>))</span><br><span class="line">        <span class="comment">//js</span></span><br><span class="line">        browserify(&#123;</span><br><span class="line">            entries:[<span class="string">'./src/index.js'</span>]</span><br><span class="line">        &#125;)</span><br><span class="line">        .transform(babelify,&#123;</span><br><span class="line">            presets: [<span class="string">'@babel/env'</span>,<span class="string">'@babel/preset-react'</span>],</span><br><span class="line">            plugins: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">        &#125;)</span><br><span class="line">        .bundle() <span class="comment">//打包</span></span><br><span class="line">        .pipe(source(<span class="string">'index.js'</span>)).pipe(gulp.dest(<span class="string">'./dist'</span>))</span><br><span class="line">        gulp.src(<span class="string">'./src/index.html'</span>).pipe(gulp.dest(<span class="string">'./dist'</span>))</span><br><span class="line">        cb()</span><br><span class="line">    &#125;)()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//开发环境</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">devServer</span>(<span class="params">cb</span>)</span>&#123;</span><br><span class="line">    browserSync.init(&#123;</span><br><span class="line">        server: &#123;</span><br><span class="line">            baseDir: <span class="string">'./dist'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    gulp.watch(<span class="string">"./src/**"</span>, gulp.series(lessChange,jsChange,htmlChange))</span><br><span class="line">    cb()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测html变化</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlChange</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'./src/index.html'</span>).pipe(gulp.dest(<span class="string">'./dist'</span>)).pipe(reload(&#123;<span class="attr">stream</span>:<span class="literal">true</span>&#125;))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测样式文件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lessChange</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'./src/index.less'</span>).pipe(less(&#123;</span><br><span class="line">        plugins: [autoprefix]</span><br><span class="line">    &#125;)).pipe(gulp.dest(<span class="string">'./dist'</span>)).pipe(reload(&#123;<span class="attr">stream</span>:<span class="literal">true</span>&#125;))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测js文件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsChange</span>(<span class="params">cb</span>)</span>&#123;</span><br><span class="line">    browserify(&#123;</span><br><span class="line">        entries:[<span class="string">'./src/index.js'</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">    .transform(babelify,&#123;</span><br><span class="line">        presets: [<span class="string">'@babel/env'</span>,<span class="string">'@babel/preset-react'</span>],</span><br><span class="line">        plugins: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">    .bundle()</span><br><span class="line">    .pipe(source(<span class="string">'index.js'</span>)).pipe(gulp.dest(<span class="string">'./dist'</span>)).pipe(reload(&#123;<span class="attr">stream</span>:<span class="literal">true</span>&#125;))</span><br><span class="line">    cb()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//default默认任务,用于package.json执行脚本gulp任务</span></span><br><span class="line">gulp.task(<span class="string">'default'</span>, gulp.series(main,devServer))</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/04/08/指数运算性能比较/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -934,150 +1081,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/01/04/RxJs实现基本拖拽/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Toffee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Toffee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/01/04/RxJs实现基本拖拽/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/2/index.html">RxJs实现基本拖拽</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-04 14:53:35 / 修改时间：15:40:32" itemprop="dateCreated datePublished" datetime="2019-01-04T14:53:35+08:00">2019-01-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"anchor"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"video"</span> <span class="attr">id</span>=<span class="string">"video"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">controls</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_stereo.ogg"</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">type</span>=<span class="string">"video/ogg"</span>&gt;</span></span><br><span class="line">            Your browser does not support HTML5 video.</span><br><span class="line">        <span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">        * &#123;</span><br><span class="line">            <span class="attribute">-webkit-box-sizing</span>: border-box;</span><br><span class="line">            <span class="attribute">-moz-box-sizing</span>: border-box;</span><br><span class="line">            <span class="attribute">box-sizing</span>: border-box; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-tag">html</span>, <span class="selector-tag">body</span> &#123;</span><br><span class="line">            <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">2000px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="number">#eee</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-id">#anchor</span> &#123;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">360px</span>;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="number">#F0F0F0</span>; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.video</span> &#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">640px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">360px</span>;</span><br><span class="line">            <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">            <span class="attribute">background-color</span>: black; &#125;</span><br><span class="line">        <span class="selector-class">.video</span><span class="selector-class">.video-fixed</span> &#123;</span><br><span class="line">            <span class="attribute">position</span>: fixed;</span><br><span class="line">            <span class="attribute">top</span>: <span class="number">10px</span>;</span><br><span class="line">            <span class="attribute">left</span>: <span class="number">10px</span>;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">320px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">            <span class="attribute">cursor</span>: all-scroll; &#125;</span><br><span class="line">        <span class="selector-class">.video</span><span class="selector-class">.video-fixed</span> <span class="selector-class">.masker</span> &#123;</span><br><span class="line">            <span class="attribute">display</span>: none; &#125;</span><br><span class="line">        <span class="selector-class">.video</span><span class="selector-class">.video-fixed</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.masker</span> &#123;</span><br><span class="line">            <span class="attribute">display</span>: block;</span><br><span class="line">            <span class="attribute">position</span>: absolute;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">180px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(0, 0, 0, 0.8);</span><br><span class="line">            <span class="attribute">z-index</span>: <span class="number">2</span>; &#125;</span><br><span class="line"></span><br><span class="line">    &lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">import</span> &#123;Observable&#125; <span class="keyword">from</span> <span class="string">'rxjs/Rx'</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">const</span> $video = <span class="built_in">document</span>.querySelector(<span class="string">'#video'</span>)</span><br><span class="line"><span class="keyword">const</span> $anchor = <span class="built_in">document</span>.querySelector(<span class="string">'#anchor'</span>)</span><br><span class="line"><span class="keyword">const</span> scroll = Observable.fromEvent(<span class="built_in">document</span>, <span class="string">'scroll'</span>).    <span class="comment">//监听document事件</span></span><br><span class="line">	map(<span class="function"><span class="params">e</span> =&gt;</span> $anchor.getBoundingClientRect().bottom &lt; <span class="number">0</span>).  <span class="comment">//map将event事件映射为判断式布尔值</span></span><br><span class="line">	subscribe(<span class="function"><span class="params">bool</span> =&gt;</span> &#123;                                   <span class="comment">//如果当前元素不在视窗内,则改变样式</span></span><br><span class="line">		<span class="keyword">if</span>(bool)&#123;</span><br><span class="line">			$video.classList.add(<span class="string">'video-fixed'</span>)</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			$video.classList.remove(<span class="string">'video-fixed'</span>)</span><br><span class="line">			$video.style.transform = <span class="string">''</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mouseDown = Observable.fromEvent($video, <span class="string">'mousedown'</span>) <span class="comment">//observe事件</span></span><br><span class="line"><span class="keyword">const</span> mouseMove = Observable.fromEvent(<span class="built_in">document</span>, <span class="string">'mousemove'</span>)</span><br><span class="line"><span class="keyword">const</span> mouseUp = Observable.fromEvent(<span class="built_in">document</span>, <span class="string">'mouseup'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> videoBoundingRect = $video.getBoundingClientRect() <span class="comment">//获取viedo元素rect对象</span></span><br><span class="line"><span class="keyword">const</span> validValue = <span class="function">(<span class="params">value,max,min</span>)=&gt;</span>&#123;                    <span class="comment">//比较函数,防止拖拽出屏幕</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Math</span>.min(<span class="built_in">Math</span>.max(value,min),max)</span><br><span class="line">&#125;</span><br><span class="line">mouseDown.filter(<span class="function"><span class="params">e</span> =&gt;</span> $video.classList.contains(<span class="string">'video-fixed'</span>)). <span class="comment">//filter过滤</span></span><br><span class="line">	switchMap(<span class="function"><span class="params">e</span> =&gt;</span> mouseMove.takeUntil(mouseUp)). <span class="comment">//将高阶Oberve转换为低阶</span></span><br><span class="line">	withLatestFrom(mouseDown, (move, down) =&gt; &#123;  <span class="comment">//结合上一个observable源的结果</span></span><br><span class="line">		<span class="keyword">return</span> &#123;  <span class="comment">//move.clientX - down.offsetX =&gt;处理抖动</span></span><br><span class="line">			x: validValue(move.clientX - down.offsetX,<span class="built_in">window</span>.innerWidth - videoBoundingRect.width/<span class="number">2</span>,<span class="number">0</span>),</span><br><span class="line">			y: validValue(move.clientY - down.offsetY,<span class="built_in">window</span>.innerHeight - videoBoundingRect.height/<span class="number">2</span>,<span class="number">0</span>),</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).</span><br><span class="line">	subscribe(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">		$video.style.transform = <span class="string">`translate3D(<span class="subst">$&#123;e.x&#125;</span>PX,<span class="subst">$&#123;e.y&#125;</span>px,0)`</span></span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1127,7 +1130,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

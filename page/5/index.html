@@ -326,6 +326,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/13/使用for-set-map实现数组去重/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2018/11/13/使用for-set-map实现数组去重/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/5/index.html">使用for,set,map实现数组去重</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-13 09:33:07 / 修改时间：11:23:09" itemprop="dateCreated datePublished" datetime="2018-11-13T09:33:07+08:00">2018-11-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数组去重的场景在开发中还是经常遇见的,比如一个地图选房功能,在地图上标识一个区域,显示区域上的房型,移动区域后显示新增的房型以及原来还在区域内的房型保持不变,实现这一个场景,就需要得出每次不变的房型的数组,以及新增的房型的数组.一般的,后台返回的数据只是我们选中的区域的房型数据,我们要对数据进行加工处理.</p>
+<h3 id="构造数据"><a href="#构造数据" class="headerlink" title="构造数据"></a>构造数据</h3><p>让我们先来生成模拟数据,并打乱我们生成的数据,模拟真实情况<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateHouses</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//生成数据</span></span><br><span class="line">    <span class="keyword">let</span> newHouse = <span class="keyword">new</span> <span class="built_in">Array</span>(n)</span><br><span class="line">    <span class="keyword">let</span> oldHouse = <span class="keyword">new</span> <span class="built_in">Array</span>(n)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n / <span class="number">2</span>; i++) &#123;</span><br><span class="line">        newHouse[i] = oldHouse[i] = &#123;</span><br><span class="line">            id: i</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = n / <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">        newHouse[i] = &#123;</span><br><span class="line">            id: n * <span class="number">2</span> + i</span><br><span class="line">        &#125;</span><br><span class="line">        oldHouse[i] = &#123;</span><br><span class="line">            id: n + i</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        newHouse: randomArr(newHouse),</span><br><span class="line">        oldHouse: randomArr(oldHouse)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomArr</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//数组洗牌</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = arr.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">var</span> randomIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (i + <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">var</span> itemAtIndex = arr[randomIndex];</span><br><span class="line">        arr[randomIndex] = arr[i];</span><br><span class="line">        arr[i] = itemAtIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123;newHouse,oldHouse&#125; = generateHouses(n) <span class="comment">//n为需要构造的数据量</span></span><br><span class="line"><span class="keyword">const</span> newSetHouse = <span class="keyword">new</span> <span class="built_in">Set</span>(newHouse)  <span class="comment">//构造set数据</span></span><br><span class="line"><span class="keyword">const</span> newMapHouse = <span class="keyword">new</span> <span class="built_in">Map</span>() <span class="comment">//构造map数据</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> index <span class="keyword">in</span> newHouse)&#123;</span><br><span class="line">        newMapHouse.set(newHouse[index].id,newHouse[index])</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="For循环"><a href="#For循环" class="headerlink" title="For循环"></a>For循环</h3><p>for循环方法进行两次循环,因为每判断一次新数据就需要遍历一遍老数据,所以时间复杂度为O(N^2),对于1000的数据,最坏的情况要判断1000000次<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterHouse_for</span>(<span class="params">newHouse, oldHouse</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (newHouse.length === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            remainHouse: oldHouse,</span><br><span class="line">            newHouse: newHouse</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> remainHouse = []</span><br><span class="line">    <span class="keyword">let</span> newOutPutouse = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> nIndex <span class="keyword">in</span> newHouse) &#123;</span><br><span class="line">        <span class="keyword">let</span> isNew = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> oIndex <span class="keyword">in</span> oldHouse) &#123;</span><br><span class="line">            <span class="keyword">if</span> (newHouse[nIndex].id === oldHouse[oIndex].id) &#123;</span><br><span class="line">                remainHouse.push(newHouse[nIndex])</span><br><span class="line">                isNew = <span class="literal">false</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isNew) &#123;</span><br><span class="line">            newOutPutouse.push(newHouse[nIndex])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        remainHouse,</span><br><span class="line">        newOutPutouse</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Set方法"><a href="#Set方法" class="headerlink" title="Set方法"></a>Set方法</h3><p>set是ES6新增的一种数据类型,它的成员是唯一的,所以用来进行去重是非常合适的,总体时间复杂度相较于for循环,它变成了O(NlogN),所以与for循环的时间长短比较取决于系数N,当系数较小时,差别不是很大,但当系数变大时,for循环消耗的时间是成指数级别增加的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterHouse_set</span>(<span class="params">newHouse, oldHouse,newSetHouse</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> remainHouse = []</span><br><span class="line">    <span class="keyword">let</span> newOutPutouse = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> oldHouse) &#123;</span><br><span class="line">        <span class="keyword">if</span> (newSetHouse.has(oldHouse[index])) &#123;</span><br><span class="line">            remainHouse.push(oldHouse[index])</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            newOutPutouse.push(oldHouse[index])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        remainHouse,</span><br><span class="line">        newOutPutouse</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Map方法"><a href="#Map方法" class="headerlink" title="Map方法"></a>Map方法</h3><p>哈希的时间复杂度为O(1)，因此总的时间复杂度为O(N)，代价是哈希的存储空间通常为数据大小的两倍,并且需要手动先构造map数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterHouse_map</span>(<span class="params">newHouse,oldHouse,newMapHouse</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> remainHouse = []</span><br><span class="line">    <span class="keyword">let</span> newOutPutouse = []</span><br><span class="line">    oldHouse.map(<span class="function"><span class="params">ele</span>=&gt;</span>&#123;</span><br><span class="line">        newMapHouse.has(ele.id)?remainHouse.push(ele):newOutPutouse.push(ele)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        remainHouse,</span><br><span class="line">        newOutPutouse</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="时间比较"><a href="#时间比较" class="headerlink" title="时间比较"></a>时间比较</h3><p>写一个函数来比较三种方法需要的时间<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">        newHouse,</span><br><span class="line">        oldHouse</span><br><span class="line">    &#125; = generateHouses(n)</span><br><span class="line">    <span class="comment">/* for */</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'for Start'</span>)</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()</span><br><span class="line">    filterHouse_for(newHouse, oldHouse)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'for End'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - time)</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* set */</span></span><br><span class="line">    <span class="keyword">const</span> newSetHouse = <span class="keyword">new</span> <span class="built_in">Set</span>(newHouse)  <span class="comment">//构造set数据</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'set Start'</span>)</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()</span><br><span class="line">    filterHouse_set(newHouse, oldHouse,newSetHouse)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'set End'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - time)</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* map */</span></span><br><span class="line">    <span class="keyword">const</span> newMapHouse = <span class="keyword">new</span> <span class="built_in">Map</span>() <span class="comment">//构造map数据</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> index <span class="keyword">in</span> newHouse)&#123;</span><br><span class="line">        newMapHouse.set(newHouse[index].id,newHouse[index])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'map Start'</span>)</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()</span><br><span class="line">    filterHouse_map(newHouse, oldHouse,newMapHouse)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'map End'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - time)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="运行结果-chrome下运行-版本-70"><a href="#运行结果-chrome下运行-版本-70" class="headerlink" title="运行结果(chrome下运行(版本 70))"></a>运行结果(chrome下运行(版本 70))</h3><p>当 n 为10时:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test(100)</span><br><span class="line">VM253:97 for Start</span><br><span class="line">VM253:100 for End 3</span><br><span class="line">VM253:104 set Start</span><br><span class="line">VM253:107 set End 0</span><br><span class="line">VM253:114 map Start</span><br><span class="line">VM253:117 map End 0</span><br></pre></td></tr></table></figure></p>
+<p>当 n 为1000时:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for Start</span><br><span class="line">VM253:100 for End 60</span><br><span class="line">VM253:104 set Start</span><br><span class="line">VM253:107 set End 1</span><br><span class="line">VM253:114 map Start</span><br><span class="line">VM253:117 map End 0</span><br></pre></td></tr></table></figure></p>
+<p>当 n 为10000时:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for Start</span><br><span class="line">VM253:100 for End 4532</span><br><span class="line">VM253:104 set Start</span><br><span class="line">VM253:107 set End 5</span><br><span class="line">VM253:114 map Start</span><br><span class="line">VM253:117 map End 2</span><br></pre></td></tr></table></figure></p>
+<p>当 n 为100000时:<br>因为for循环等了几分钟都没有算出结果,就不比较for循环了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set Start</span><br><span class="line">VM231:102 set End 37</span><br><span class="line">VM231:109 map Start</span><br><span class="line">VM231:112 map End 30</span><br></pre></td></tr></table></figure></p>
+<p>当 n 为10000000时:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test(1000000)</span><br><span class="line"></span><br><span class="line">VM231:99 set Start</span><br><span class="line">VM231:102 set End 466</span><br><span class="line">VM231:109 map Start</span><br><span class="line">VM231:112 map End 592</span><br></pre></td></tr></table></figure></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>可以看出,不论哪种情况,for循环用时都是最长的,所以不要使用for循环😋,数据量是十万级别以下时,使用map速度比set快一些,十万级别以上时使用set</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/12/Fisher–Yates shuffle 洗牌算法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -958,7 +1111,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
