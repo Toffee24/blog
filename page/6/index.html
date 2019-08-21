@@ -108,24 +108,20 @@
 
 
 
-  <meta name="description" content="corn命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令,例如Jenkins定时任务等.123456789*    *    *    *    *    *┬    ┬    ┬    ┬    ┬    ┬│    │    │    │    │    |│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is">
-<meta property="og:type" content="article">
-<meta property="og:title" content="cron定时器写法">
-<meta property="og:url" content="https://toffee24.github.io/blog/2018/11/14/cron定时器写法/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Toffee&#39;s Blog">
+<meta property="og:url" content="https://toffee24.github.io/blog/page/6/index.html">
 <meta property="og:site_name" content="Toffee&#39;s Blog">
-<meta property="og:description" content="corn命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令,例如Jenkins定时任务等.123456789*    *    *    *    *    *┬    ┬    ┬    ┬    ┬    ┬│    │    │    │    │    |│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-14T08:00:57.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cron定时器写法">
-<meta name="twitter:description" content="corn命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令,例如Jenkins定时任务等.123456789*    *    *    *    *    *┬    ┬    ┬    ┬    ┬    ┬│    │    │    │    │    |│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is">
+<meta name="twitter:title" content="Toffee&#39;s Blog">
 
 
 
 
 
 
-  <link rel="canonical" href="https://toffee24.github.io/blog/2018/11/14/cron定时器写法/">
+  <link rel="canonical" href="https://toffee24.github.io/blog/page/6/">
 
 
 
@@ -135,7 +131,7 @@
   };
 </script>
 
-  <title>cron定时器写法 | Toffee's Blog</title>
+  <title>Toffee's Blog</title>
   
 
 
@@ -184,7 +180,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -312,9 +309,9 @@
           
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -329,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/14/cron定时器写法/">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/08/使用Puppeteer爬虫/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Toffee">
@@ -346,7 +343,10 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">cron定时器写法
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2018/11/08/使用Puppeteer爬虫/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/6/index.html">使用Puppeteer爬虫</a>
               
             
           </h2>
@@ -371,12 +371,24 @@
                 
               
 
-              <time title="创建时间：2018-11-14 15:53:33 / 修改时间：16:00:57" itemprop="dateCreated datePublished" datetime="2018-11-14T15:53:33+08:00">2018-11-14</time>
+              <time title="创建时间：2018-11-08 14:09:35" itemprop="dateCreated datePublished" datetime="2018-11-08T14:09:35+08:00">2018-11-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-09 17:24:41" itemprop="dateModified" datetime="2018-11-09T17:24:41+08:00">2018-11-09</time>
               
             
           </span>
@@ -409,15 +421,12 @@
       
 
       
-        <p>corn命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令,例如Jenkins定时任务等.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*    *    *    *    *    *</span><br><span class="line">┬    ┬    ┬    ┬    ┬    ┬</span><br><span class="line">│    │    │    │    │    |</span><br><span class="line">│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)</span><br><span class="line">│    │    │    │    └───── month (1 - 12)</span><br><span class="line">│    │    │    └────────── day of month (1 - 31)</span><br><span class="line">│    │    └─────────────── hour (0 - 23)</span><br><span class="line">│    └──────────────────── minute (0 - 59)</span><br><span class="line">└───────────────────────── second (0 - 59, optional)</span><br></pre></td></tr></table></figure></p>
-<p>在一个区域里填写多个数值的方法：</p>
-<ul>
-<li>逗号（’,’）分开的值，例如：“1,3,4,7,8”</li>
-<li>连词符（’-‘）指定值的范围，例如：“1-6”，意思等同于“1,2,3,4,5,6”</li>
-<li>星号（’*’）代表任何可能的值。例如，在“小时域”里的星号等于是“每一个小时”，等等</li>
-</ul>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每三小时准点执行一次</span><br><span class="line">cron: &apos;0 0 */3 * * *&apos;</span><br></pre></td></tr></table></figure>
+        
+          
+            <h5 id="Puppeteer是-GoogleChrome团队官方的无界面（Headless）Chrome工具，它是一个Node库，提供了一个高级的API来控制DevTool协议上的无头版-Chrome-。也可以配置为使用完整（非无头）的-Chrome。"><a href="#Puppeteer是-GoogleChrome团队官方的无界面（Headless）Chrome工具，它是一个Node库，提供了一个高级的API来控制DevTool协议上的无头版-Chrome-。也可以配置为使用完整（非无头）的-Chrome。" class="headerlink" title="Puppeteer是 GoogleChrome团队官方的无界面（Headless）Chrome工具，它是一个Node库，提供了一个高级的API来控制DevTool协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。"></a><a href="https://github.com/GoogleChrome/puppeteer" target="_blank" rel="noopener">Puppeteer</a>是 GoogleChrome团队官方的无界面（Headless）Chrome工具，它是一个Node库，提供了一个高级的API来控制<a href="https://chromedevtools.github.io/devtools-protocol/" target="_blank" rel="noopener">DevTool</a>协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>)</span><br><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.launch()</span><br><span class="line">	<span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">	<span class="comment">//过滤请求资源</span></span><br><span class="line"><span class="comment">//	await page.setRequestInterception(true)</span></span><br><span class="line"><span class="comment">//	page.on('request', interceptedRequest =&gt; &#123;</span></span><br><span class="line"><span class="comment">//		if (interceptedRequest.url().endsWith('.png') ||</span></span><br><span class="line"><span class="comment">//			interceptedRequest.url().endsWith('.jpg') ||</span></span><br><span class="line"><span class="comment">//			interceptedRequest.url().endsWith('.gif'))</span></span><br><span class="line"><span class="comment">//			interceptedRequest.abort()</span></span><br><span class="line"><span class="comment">//		else</span></span><br><span class="line"><span class="comment">//			interceptedRequest.continue()</span></span><br><span class="line"><span class="comment">//	&#125;)</span></span><br><span class="line">	<span class="keyword">await</span> page.goto(<span class="string">'http://jandan.net/ooxx'</span>)</span><br><span class="line">	<span class="keyword">const</span> $ = cheerio.load(<span class="keyword">await</span> page.content())</span><br><span class="line">	<span class="keyword">const</span> $img = $(<span class="string">'img'</span>)</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> $img) &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">const</span> content = <span class="keyword">await</span> getResourceContent(page, ($img[index].attribs.src))</span><br><span class="line">			<span class="keyword">const</span> contentBuffer = Buffer.from(content, <span class="string">'base64'</span>)</span><br><span class="line">			<span class="keyword">const</span> fileName = $img[index].attribs.src.match(</span><br><span class="line">				/^http(s)?:\/\/(.+)\/(.+)\/(.+\..+)/)[<span class="number">4</span>]</span><br><span class="line">			fs.writeFileSync(fileName, contentBuffer, <span class="string">'base64'</span>)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">await</span> browser.close()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获得资源树</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getResourceTree</span>(<span class="params">page</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> resource = <span class="keyword">await</span> page._client.send(<span class="string">'Page.getResourceTree'</span>)</span><br><span class="line">	<span class="keyword">return</span> resource.frameTree</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据url frameId查找资源实例</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getResourceContent</span>(<span class="params">page, url</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> &#123;content, base64Encoded&#125; = <span class="keyword">await</span> page._client.send(</span><br><span class="line">		<span class="string">'Page.getResourceContent'</span>,</span><br><span class="line">		&#123;<span class="attr">frameId</span>: <span class="built_in">String</span>(page.mainFrame()._id), url&#125;,</span><br><span class="line">	)</span><br><span class="line">	assert.strictEqual(base64Encoded, <span class="literal">true</span>)</span><br><span class="line">	<span class="keyword">return</span> content</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">start()</span><br></pre></td></tr></table></figure>
 
+          
+        
       
     </div>
 
@@ -440,32 +449,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2018/11/13/async库parallel-parallelLimit介绍/" rel="next" title="async库parallel/parallelLimit介绍">
-                <i class="fa fa-chevron-left"></i> async库parallel/parallelLimit介绍
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/11/16/1px border边框实现/" rel="prev" title="1px border边框实现">
-                1px border边框实现 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -475,15 +464,18 @@
   </article>
 
 
-  </div>
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/blog/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -504,17 +496,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -608,22 +591,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.</span> <span class="nav-text">示例</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -767,10 +734,6 @@
 
 
   
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=6.5.0"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=6.5.0"></script>
-
-
 
   
 

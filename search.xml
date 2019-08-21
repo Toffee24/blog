@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[vue transition实现原生页面跳转效果]]></title>
+    <url>%2Fblog%2F2019%2F08%2F21%2Ftransition%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%94%9F%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E6%95%88%E6%9E%9C%2F</url>
+    <content type="text"><![CDATA[代码使用Vue &lt;transition&gt; 组件过渡 123&lt;transition :name=&quot;this.$store.routeAction&quot;&gt; &lt;router-view/&gt;&lt;/transition&gt; CSS1234567891011121314151617181920212223242526.push-enter-active,.push-leave-active, .pop-enter-active,.pop-leave-active&#123; transition: all 0.4s;&#125;.push-leave-to&#123;transform: translate(-20%,0);&#125;.push-enter &#123; transform: translate(100%, 0);&#125;.push-enter-active &#123; z-index: 10;&#125;.push-leave-active &#123; z-index: 0;&#125;.pop-leave-active &#123; transform: translate(100%, 0); z-index: 11;&#125;.pop-enter&#123; transform: translate(-20%,0);&#125; 效果]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[chrome快捷键太反人类?不想安装额外插件?那就用TamperMonkey写个脚本]]></title>
     <url>%2Fblog%2F2019%2F07%2F19%2Fchrome%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A4%AA%E5%8F%8D%E4%BA%BA%E7%B1%BB-%E4%B8%8D%E6%83%B3%E5%AE%89%E8%A3%85%E9%A2%9D%E5%A4%96%E6%8F%92%E4%BB%B6-%E9%82%A3%E5%B0%B1%E7%94%A8TamperMonkey%E5%86%99%E4%B8%AA%E8%84%9A%E6%9C%AC%2F</url>
     <content type="text"><![CDATA[Chrome快捷键对于一天用到将近百余次的ctrl+w的我来说,一直觉得chrome原本的ctrl+w的按键有点别扭,终于在今天忍不住了,开始寻找如何去修改chrome默认的快捷键。在设置里找了一圈,发现没有,无奈google了一下,发现有这么几种办法 安装chrome插件 如Shortkeys等 修改chrome系统文件我综合了一下,发现我只需要实现alt + w关闭浏览器TAB的功能,这么折腾似乎不太经济,突然想到我有安装TamperMonkey油猴插件,于是便想到自己动手写个js脚本完事 TamperMonkeyTamperMonkey是一个浏览器插件,它是一个脚本管理器,通过脚本市场安装第三方js脚本,可以实现非常多的拓展功能,可以就不展开了我们新建一个脚本文件,注意脚本文件开头 match选项表示脚本应用的范围,这里我们应用所有网站12// @match http://*/*// @match https://*/* 编写脚本好了,下面就开始编写我们的脚本,TamperMonkey脚本文件实质就是输出个js IFFE(立即执行函数),脚本内容都编写在里面,我们只需要全局监听onkeydown事件,判断是否同时按下alt + w,然后执行window.close()关闭页面就可以了12345678(function() &#123; window.addEventListener('keydown',function(event)&#123; if (event.altKey &amp;&amp; event.keyCode == 87) &#123; window.location.href = "about:blank" window.close() &#125; &#125;)&#125;)()]]></content>
