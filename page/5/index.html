@@ -326,6 +326,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/20/gulp配置示例/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2018/11/20/gulp配置示例/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/5/index.html">gulp配置示例</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-20 20:11:01 / 修改时间：20:18:49" itemprop="dateCreated datePublished" datetime="2018-11-20T20:11:01+08:00">2018-11-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/blog/images/gulp.jpg" width="50%" height="50%"></p>
+<h3 id="Gulp是什么"><a href="#Gulp是什么" class="headerlink" title="Gulp是什么"></a>Gulp是什么</h3><p><a href="https://www.gulpjs.com.cn/docs/getting-started/" target="_blank" rel="noopener">Gulp</a>是一个基于流的构建工具，可以自动执行指定的任务，简洁且高效</p>
+<h3 id="Gulp能做什么"><a href="#Gulp能做什么" class="headerlink" title="Gulp能做什么"></a>Gulp能做什么</h3><ul>
+<li>开发环境下，想要能够按模块组织代码，监听实时变化</li>
+<li>css/js预编译，postcss等方案，浏览器前缀自动补全等</li>
+<li>条件输出不同的网页，比如app页面和mobile页面</li>
+<li>线上环境下，我想要合并、压缩 html/css/javascritp/图片，减少网络请求，同时降低网络负担</li>
+<li>等等…</li>
+</ul>
+<h3 id="gulp配置示例以及注释"><a href="#gulp配置示例以及注释" class="headerlink" title="gulp配置示例以及注释"></a>gulp配置示例以及注释</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/******************************************************</span></span><br><span class="line"><span class="comment">*  gulp 组件 及 gulp task</span></span><br><span class="line"><span class="comment">******************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);  <span class="comment">//引入gulp</span></span><br><span class="line"><span class="keyword">const</span> source = <span class="built_in">require</span>(<span class="string">'vinyl-source-stream'</span>);  <span class="comment">//加载vinyl文件流处理</span></span><br><span class="line"><span class="keyword">const</span> browserify = <span class="built_in">require</span>(<span class="string">'browserify'</span>);  <span class="comment">//加载预编译browserSync</span></span><br><span class="line"><span class="keyword">const</span> browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>); <span class="comment">//实时更新插件</span></span><br><span class="line"><span class="keyword">const</span> buffer = <span class="built_in">require</span>(<span class="string">'vinyl-buffer'</span>);</span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">'babelify'</span>); <span class="comment">//babel语法转化</span></span><br><span class="line"><span class="keyword">const</span> reload = browserSync.reload;</span><br><span class="line"><span class="keyword">const</span> sourcemaps = <span class="built_in">require</span>(<span class="string">'gulp-sourcemaps'</span>);  <span class="comment">//生成sourcemap文件</span></span><br><span class="line"><span class="keyword">const</span> del = <span class="built_in">require</span>(<span class="string">'del'</span>);  <span class="comment">//引入删除模块</span></span><br><span class="line"><span class="keyword">const</span> argv = <span class="built_in">require</span>(<span class="string">'yargs'</span>).argv;  <span class="comment">// 引入参数 根据参数的不同 执行相应的任务 s 生产环境  p  测试环境  d 开发环境</span></span><br><span class="line"><span class="keyword">const</span> __ = <span class="built_in">require</span>(<span class="string">'gulp-load-plugins'</span>)();  <span class="comment">//可以不用引入 直接使用已经在package.json里的插件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//先预定好各个元素的路径</span></span><br><span class="line"><span class="keyword">const</span> domSrc = &#123;</span><br><span class="line">    <span class="comment">//js 路径</span></span><br><span class="line">    jsSrc: <span class="string">'app/js/**/*.js'</span>,</span><br><span class="line">    <span class="comment">//js 库路径</span></span><br><span class="line">    jsLibsSrc: <span class="string">'app/js/libs/**/*.js'</span>,</span><br><span class="line">    <span class="comment">//jquery 文件</span></span><br><span class="line">    jquerySrc:<span class="string">'app/js/libs/jquery/*.js'</span>,</span><br><span class="line">    <span class="comment">//config js路径</span></span><br><span class="line">    configSrc: <span class="string">'app/js/config/*.js'</span>,</span><br><span class="line">    <span class="comment">//index路径</span></span><br><span class="line">    indexHtmlSrc: <span class="string">'app/index.html'</span>,</span><br><span class="line">    <span class="comment">//页面路径</span></span><br><span class="line">    htmlSrc: <span class="string">'app/**/*.html'</span>,</span><br><span class="line">    <span class="comment">//css路径</span></span><br><span class="line">    cssSrc: [<span class="string">'app/assets/**/*.css'</span>, <span class="string">'app/assets/scss/app.scss'</span>],</span><br><span class="line">    <span class="comment">//监听css路径</span></span><br><span class="line">    watchCssSrc: <span class="string">'app/assets/**/*.&#123;css,scss&#125;'</span>,</span><br><span class="line">    <span class="comment">//监听css路径</span></span><br><span class="line">    <span class="comment">//fonts路径 排除css文件</span></span><br><span class="line">    fontSrc: [<span class="string">'app/assets/fonts/*'</span>, <span class="string">'!app/assets/fonts/*.css'</span>],</span><br><span class="line">    <span class="comment">//image路径</span></span><br><span class="line">    imgSrc: <span class="string">'app/assets/images/**/*'</span>,</span><br><span class="line">    <span class="comment">//res路径</span></span><br><span class="line">    resSrc: <span class="string">'app/assets/res/**/*'</span>,</span><br><span class="line">    <span class="comment">//dist 下的 JS</span></span><br><span class="line">    distJsSrc: <span class="string">'dist/js'</span>,</span><br><span class="line">    <span class="comment">//dist 下的 html</span></span><br><span class="line">    distHtmlSrc: <span class="string">'dist/html'</span>,</span><br><span class="line">    <span class="comment">//dist 下的 tpl</span></span><br><span class="line">    distTplSrc: <span class="string">'dist/tpl'</span>,</span><br><span class="line">    <span class="comment">//dist 下的css</span></span><br><span class="line">    distCssSrc: <span class="string">'dist/css'</span>,</span><br><span class="line">    <span class="comment">//dist 下的 fonts</span></span><br><span class="line">    distFontsSrc: <span class="string">'dist/fonts'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//js 库文件 组文件 筛选</span></span><br><span class="line"><span class="keyword">const</span> libsfilter = __.filter(domSrc.jsLibsSrc, &#123;<span class="attr">restore</span>: <span class="literal">true</span>, <span class="attr">passthrough</span>: <span class="literal">false</span>&#125;);</span><br><span class="line"><span class="comment">//js 业务 文件 筛选</span></span><br><span class="line"><span class="keyword">const</span> servicefilter = __.filter([domSrc.jsSrc, <span class="string">'!'</span> + domSrc.jsLibsSrc], &#123;<span class="attr">restore</span>: <span class="literal">true</span>, <span class="attr">passthrough</span>: <span class="literal">false</span>&#125;);</span><br><span class="line"><span class="comment">//html index.html 筛选</span></span><br><span class="line"><span class="keyword">const</span> indexHtmlfilter = __.filter(domSrc.indexHtmlSrc, &#123;<span class="attr">restore</span>: <span class="literal">true</span>, <span class="attr">passthrough</span>: <span class="literal">false</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//配置config</span></span><br><span class="line">gulp.task(<span class="string">'js:config'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> configSource = <span class="string">'app/js/config/dev.js'</span>;</span><br><span class="line">    <span class="keyword">if</span> (argv.s) &#123;</span><br><span class="line">        <span class="comment">//测试环境</span></span><br><span class="line">        configSource = <span class="string">'app/js/config/staging.js'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (argv.p) &#123;</span><br><span class="line">        <span class="comment">//生产环境</span></span><br><span class="line">        configSource = <span class="string">'app/js/config/prod.js'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(configSource)</span><br><span class="line">        .pipe(__.rename(<span class="string">'config.js'</span>))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'app/js/config'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6 to ES5</span></span><br><span class="line">gulp.task(<span class="string">'js:es6-2-es5'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> browserify(&#123;<span class="attr">entries</span>: <span class="string">'app/js/myApp.js'</span>&#125;)</span><br><span class="line">        .transform(babel) <span class="comment">//&#123;presets: ["es2015"]&#125;</span></span><br><span class="line">        .bundle()</span><br><span class="line">        <span class="comment">//.pipe(__.sourcemaps.init())</span></span><br><span class="line">        .pipe(source(<span class="string">'myApp.js'</span>))</span><br><span class="line">        .pipe(__.if(argv.p, __.streamify(__.uglify())))</span><br><span class="line">        .pipe(__.rename(&#123;<span class="attr">suffix</span>: <span class="string">'.min'</span>&#125;))</span><br><span class="line">        <span class="comment">//.pipe(__.sourcemaps.write('./'))</span></span><br><span class="line">        .pipe(gulp.dest(<span class="string">'dist/js'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//JS 拷贝 libs ,components 文件夹</span></span><br><span class="line">gulp.task(<span class="string">'js:copy-libs'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src([domSrc.jsLibsSrc,<span class="string">'!'</span>+domSrc.jquerySrc])</span><br><span class="line">        <span class="comment">//.pipe(__.sourcemaps.init())</span></span><br><span class="line">        .pipe(__.flatten()) <span class="comment">//移除目录结构</span></span><br><span class="line">        .pipe(__.concat(<span class="string">"applibs.js"</span>)) <span class="comment">//合并</span></span><br><span class="line">        .pipe(__.uglify()) <span class="comment">//压缩</span></span><br><span class="line">        .pipe(__.rename(&#123;<span class="attr">suffix</span>: <span class="string">'.min'</span>&#125;)) <span class="comment">//重命名</span></span><br><span class="line">        <span class="comment">//.pipe(__.sourcemaps.write('./'))</span></span><br><span class="line">        .pipe(gulp.dest(<span class="string">'dist/js/libs'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//解析HTML</span></span><br><span class="line">gulp.task(<span class="string">'html'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(domSrc.htmlSrc)</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'dist/'</span>))</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//复制 fonts</span></span><br><span class="line">gulp.task(<span class="string">'fonts'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(domSrc.fontSrc)</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'dist/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//复制 图片</span></span><br><span class="line">gulp.task(<span class="string">'image'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(domSrc.imgSrc)</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'dist/imgs'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//复制 res</span></span><br><span class="line">gulp.task(<span class="string">'res'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(domSrc.resSrc)</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'dist/res'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//解析并合并压缩css</span></span><br><span class="line">gulp.task(<span class="string">'css'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(domSrc.cssSrc)</span><br><span class="line">        .pipe(__.if(<span class="string">'*.scss'</span>, __.sass()))</span><br><span class="line">        .pipe(__.concat(<span class="string">'app.css'</span>))</span><br><span class="line">        .pipe( __.minifyCss())</span><br><span class="line">        .pipe(__.rename(<span class="function">(<span class="params">path</span>)=&gt;</span> &#123;</span><br><span class="line">            path.basename += <span class="string">'.min'</span>;</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'dist/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除dist下的JS文件</span></span><br><span class="line">gulp.task(<span class="string">'clean:js'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> del([domSrc.distJsSrc]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除dist 下的html文件</span></span><br><span class="line">gulp.task(<span class="string">'clean:html'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> del([domSrc.distHtmlSrc, domSrc.distTplSrc]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除dist下的 css 文件</span></span><br><span class="line">gulp.task(<span class="string">'clean:css'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> del([domSrc.distCssSrc]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除dist 下的 fonts文件</span></span><br><span class="line">gulp.task(<span class="string">'clean:fonts'</span>, ()=&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> del([domSrc.distFontsSrc])</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//本地服务器</span></span><br><span class="line">gulp.task(<span class="string">'server'</span>, ()=&gt; &#123;</span><br><span class="line">    browserSync(&#123;</span><br><span class="line">        <span class="comment">// tunnel: true,</span></span><br><span class="line">        open: <span class="literal">false</span>,</span><br><span class="line">        port: <span class="number">9996</span>,</span><br><span class="line">        server: &#123;</span><br><span class="line">            baseDir: [<span class="string">'dist'</span>],</span><br><span class="line">            index: [<span class="string">'./html/index.html'</span>, <span class="string">'index.html'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//js</span></span><br><span class="line">    gulp.watch([domSrc.jsSrc,<span class="string">"!"</span>+domSrc.configSrc], gulp.series(<span class="string">'js'</span>, reload));</span><br><span class="line">    <span class="comment">//css</span></span><br><span class="line">    gulp.watch(domSrc.watchCssSrc, gulp.series(<span class="string">'css'</span>, reload));</span><br><span class="line">    <span class="comment">//html</span></span><br><span class="line">    gulp.watch(domSrc.htmlSrc, gulp.series(<span class="string">'html'</span>, reload));</span><br><span class="line">    <span class="comment">//image</span></span><br><span class="line">    gulp.watch(domSrc.imgSrc, gulp.series(<span class="string">'image'</span>, reload));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'clean'</span>, gulp.parallel(<span class="string">'clean:js'</span>, <span class="string">'clean:html'</span>, <span class="string">'clean:css'</span>, <span class="string">'clean:fonts'</span>));</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'js'</span>, gulp.series(<span class="string">'clean:js'</span>, <span class="string">'js:config'</span>, <span class="string">'js:es6-2-es5'</span>, <span class="string">'js:copy-libs'</span>));</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'copy'</span>, gulp.parallel(<span class="string">'html'</span>, <span class="string">'fonts'</span>, <span class="string">'image'</span>, <span class="string">'res'</span>));</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, gulp.series(<span class="string">'clean'</span>, <span class="string">'copy'</span>, <span class="string">'js'</span>, <span class="string">'css'</span>, <span class="string">'server'</span>));</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'build'</span>, gulp.series(<span class="string">'clean'</span>, <span class="string">'copy'</span>, <span class="string">'js'</span>, <span class="string">'css'</span>));</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/16/1px border边框实现/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -963,153 +1114,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/12/Fisher–Yates shuffle 洗牌算法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Toffee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Toffee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2018/11/12/Fisher–Yates shuffle 洗牌算法/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/5/index.html">Fisher–Yates shuffle 洗牌算法</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-12 13:45:48 / 修改时间：13:55:58" itemprop="dateCreated datePublished" datetime="2018-11-12T13:45:48+08:00">2018-11-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>简单来说 Fisher–Yates shuffle 算法是一个用来将一个有限集合生成一个随机排列的算法（数组随机排序）。这个算法生成的随机排列是等概率的。同时这个算法非常高效。</p>
-<h3 id="Fisher-and-Yates-的原始版"><a href="#Fisher-and-Yates-的原始版" class="headerlink" title="Fisher and Yates 的原始版"></a>Fisher and Yates 的原始版</h3><hr>
-<p>Fisher–Yates shuffle 的原始版本，最初描述在 1938 年的 Ronald Fisher 和 Frank Yates 写的书中，书名为《Statistical tables for biological, agricultural and medical research》。他们使用纸和笔去描述了这个算法，并使用了一个随机数表来提供随机数。它给出了 1 到 N 的数字的的随机排列，具体步骤如下：</p>
-<p>写下从 1 到 N 的数字<br>取一个从 1 到剩下的数字（包括这个数字）的随机数 k<br>从低位开始，得到第 k 个数字（这个数字还没有被取出），把它写在独立的一个列表的最后一位<br>重复第 2 步，直到所有的数字都被取出<br>第 3 步写出的这个序列，现在就是原始数字的随机排列<br>已经证明如果第 2 步取出的数字是真随机的，那么最后得到的排序一定也是。</p>
-<h3 id="JavaScript-代码实现"><a href="#JavaScript-代码实现" class="headerlink" title="JavaScript 代码实现"></a>JavaScript 代码实现</h3><hr>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Fisher–Yates shuffle</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.shuffle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> input = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = input.length<span class="number">-1</span>; i &gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> randomIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*(i+<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">var</span> itemAtIndex = input[randomIndex];</span><br><span class="line"></span><br><span class="line">        input[randomIndex] = input[i];</span><br><span class="line">        input[i] = itemAtIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> input;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1159,7 +1163,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
