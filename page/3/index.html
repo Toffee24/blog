@@ -326,6 +326,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/06/11/Vue数据更新问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/06/11/Vue数据更新问题/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/3/index.html">Vue数据更新问题</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-11 20:05:08 / 修改时间：20:32:35" itemprop="dateCreated datePublished" datetime="2019-06-11T20:05:08+08:00">2019-06-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Vue-的数组更新问题"><a href="#Vue-的数组更新问题" class="headerlink" title="Vue 的数组更新问题"></a>Vue 的数组更新问题</h3><blockquote>
+<p>以下参考 Vue 文档<br>  由于 JavaScript 的限制，Vue 不能检测以下数组的变动：<br>  1.当你利用索引直接设置一个数组项时，例如：vm.items[indexOfItem] = newValue<br>  2.当你修改数组的长度时，例如：vm.items.length = newLength</p>
+</blockquote>
+<p><strong>题外话</strong> 实际上，我们在 <code>Vue</code> 的数组书使用 <code>splice</code>、<code>push</code>等方法，<code>Vue</code> 都已经做了一层封装，所以它们才能出发视图更新，如果有想更加深入了解，可以阅读<a href="https://ustbhuangyi.github.io/vue-analysis/prepare/flow.html#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8-flow" target="_blank" rel="noopener">源码</a>。</p>
+<h3 id="Vue-强制刷新——-forceUpdate"><a href="#Vue-强制刷新——-forceUpdate" class="headerlink" title="Vue 强制刷新——$forceUpdate()"></a>Vue 强制刷新——$forceUpdate()</h3><blockquote>
+<p>如果你发现你自己需要在 Vue 中做一次强制更新，99.9% 的情况，是你在某个地方做错了事。</p>
+</blockquote>
+<p>类似的代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在控制变量改变的时候进行 强制渲染更新</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> childrenRefs = <span class="keyword">this</span>.$refs.elTabs.$children</span><br><span class="line"><span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  childrenRefs.forEach(<span class="function"><span class="params">child</span> =&gt;</span> child.$forceUpdate())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="深拷贝数据"><a href="#深拷贝数据" class="headerlink" title="深拷贝数据"></a>深拷贝数据</h3><p>先用一个数据深拷贝数据，这里使用了 <code>slice</code> 方法，然后置空，最后在 <code>$nextTick</code> 中赋值深拷贝出来的数组值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newArray = <span class="keyword">this</span>.questionData.slice(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">this</span>.questionData = []</span><br><span class="line"><span class="keyword">this</span>.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.questionData = newArray;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/05/25/gulp配置react开发环境/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -923,169 +1073,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/02/18/组件化开发/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Toffee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Toffee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/02/18/组件化开发/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/3/index.html">前端组件化开发</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-18 14:21:55 / 修改时间：15:32:56" itemprop="dateCreated datePublished" datetime="2019-02-18T14:21:55+08:00">2019-02-18</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="什么是组件化开发"><a href="#什么是组件化开发" class="headerlink" title="什么是组件化开发"></a>什么是组件化开发</h3><hr>
-<p>前端组件化开发，就是将页面的某一部分独立出来，将这一部分的 数据层（M）、视图层（V）和 控制层（C）用黑盒的形式全部封装到一个容器内，暴露出一些开箱即用的函数和属性供外部组件调用。</p>
-<h3 id="怎么设计一个组件"><a href="#怎么设计一个组件" class="headerlink" title="怎么设计一个组件"></a>怎么设计一个组件</h3><hr>
-<h4 id="单一"><a href="#单一" class="headerlink" title="单一"></a>单一</h4><p>一个组件的功能是单一的,应该只做一件事。<br>一个功能如果可以拆分成多个功能点，那就可以将每个功能点封装成一个组件，当然也不是组件的颗粒度越小越好，只要将一个组件内的功能和逻辑控制在一个可控的范围内即可。</p>
-<h4 id="与业务逻辑解耦"><a href="#与业务逻辑解耦" class="headerlink" title="与业务逻辑解耦"></a>与业务逻辑解耦</h4><p>一个组件应该是纯粹,不参杂业务逻辑的,当涉及到业务时,如日期选择组件,产品要求日期小于当日的不可以选择,否则弹出提示框<em>提示用户</em>,这是我们就应该通过传入的配置参数,来进行判断,如果开启<strong>不能选择小于当前日期</strong>配置的话,当用户点击不符合要求的日期时,通过组件事件传递,将该事件告知父组件,由父组件进行业务逻辑的处理。</p>
-<h4 id="可配置"><a href="#可配置" class="headerlink" title="可配置"></a>可配置</h4><p>在一开始设计组件的时候就应该结合业务需求考虑哪些功能应该做成可配置式的,如干警端<code>src/components/noResultComponent</code>(用于空数据时的展示),默认的文案是<em>暂无数据</em>,但是在有时候刚进入页面时,此时网络正在请求数据,页面此时用暂无数据就不太合适,这时候可以传<em>正在加载</em>来告知用户,此时正在请求数据过程中请等待。</p>
-<h5 id="属性值的检验"><a href="#属性值的检验" class="headerlink" title="属性值的检验"></a>属性值的检验</h5><p>1.传入属性是否合法<br>2.属性是否必传</p>
-<p>在wepy中进行类型检查:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">props = &#123;</span><br><span class="line">        text: &#123;</span><br><span class="line">          type: <span class="built_in">String</span>,</span><br><span class="line">          <span class="keyword">default</span>: <span class="string">'正在加载'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
-<p>Vue中类型检查<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">props = &#123;</span><br><span class="line">        someprop: &#123;</span><br><span class="line">          type: <span class="built_in">String</span>,</span><br><span class="line">          <span class="keyword">default</span>: <span class="string">'someText'</span>,</span><br><span class="line">          required: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
-<p>React中进行类型检查<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">'prop-types'</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// ... do things with the props</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">MyComponent.propTypes = &#123;</span><br><span class="line">    someProps:PropTypes.string.isRequired</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h3><hr>
-<p>初始化阶段,读取属性值,并进行处理</p>
-<p>展示阶段,监听属性变化,进行相应逻辑处理</p>
-<p>组件销毁阶段,及时移除组件中对整个系统产生副作用的操作,如<code>addEventListener</code>,<code>setInterval</code>等等。</p>
-<p>在小程序中定义组件生命周期<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  lifetimes: &#123;</span><br><span class="line">    attached() &#123;</span><br><span class="line">      <span class="comment">// 在组件实例进入页面节点树时执行</span></span><br><span class="line">    &#125;,</span><br><span class="line">    detached() &#123;</span><br><span class="line">      <span class="comment">// 在组件实例被从页面节点树移除时执行</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 以下是旧式的定义方式，可以保持对 &lt;2.2.3 版本基础库的兼容</span></span><br><span class="line">  attached() &#123;</span><br><span class="line">    <span class="comment">// 在组件实例进入页面节点树时执行</span></span><br><span class="line">  &#125;,</span><br><span class="line">  detached() &#123;</span><br><span class="line">    <span class="comment">// 在组件实例被从页面节点树移除时执行</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="事件传递"><a href="#事件传递" class="headerlink" title="事件传递"></a>事件传递</h3><hr>
-<p>在<code>wepy</code>中,wepy.component基类提供$broadcast、$emit、$invoke三个方法用于组件之间的通信和交互<br>在<code>Vue</code>中,子组件通过<code>this.$emit</code>发送,父组件只需监听该发送的事件即可<br>在’React’中,父组件可以使用 props 向子组件传值，而子组件向父组件传值，需要在父组件内定义函数并通过属性传递给子组件，在子组件内通过调用该属性对应的函数，传入参数，传递给父组件内的函数，并在父组件的该函数中做逻辑的处理。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Components</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;button onClick=&#123;</span><br><span class="line">        () =&gt; &#123;</span><br><span class="line">          <span class="keyword">this</span>.props.clickHandler(<span class="string">'This is a click'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;&gt;<span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//父组件</span></span><br><span class="line"><span class="keyword">import</span> ChildComponent <span class="keyword">from</span> <span class="string">'./child-component'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParentComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Components</span> </span>&#123;</span><br><span class="line">  clickHandler(message) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(message)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;child-component</span><br><span class="line">        clickHandler=&#123; <span class="keyword">this</span>.clickHandler.bind(<span class="keyword">this</span>) &#125;</span><br><span class="line">        /&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/6/">6</a><a class="extend next" rel="next" href="/blog/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1130,7 +1122,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
