@@ -326,6 +326,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/09/使用async库并发爬取网易云音乐歌单/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2018/11/09/使用async库并发爬取网易云音乐歌单/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/7/index.html">使用async库结合puppeteer并发爬取网易云音乐歌单(简易demo)</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-09 17:09:35" itemprop="dateCreated datePublished" datetime="2018-11-09T17:09:35+08:00">2018-11-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-12 14:51:14" itemprop="dateModified" datetime="2018-11-12T14:51:14+08:00">2018-11-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="async是node的一个强大的异步第三方库-它包含许多功能方法-今天主要用其中的mapLimit方法来实现并行执行爬虫-mapLimit-coll-limit-iteratee-callbackopt-接收四个参数"><a href="#async是node的一个强大的异步第三方库-它包含许多功能方法-今天主要用其中的mapLimit方法来实现并行执行爬虫-mapLimit-coll-limit-iteratee-callbackopt-接收四个参数" class="headerlink" title="async是node的一个强大的异步第三方库,它包含许多功能方法,今天主要用其中的mapLimit方法来实现并行执行爬虫.mapLimit(coll,limit, iteratee, callbackopt)接收四个参数:"></a><a href="https://github.com/caolan/async" target="_blank" rel="noopener">async</a>是node的一个强大的异步第三方库,它包含许多功能方法,今天主要用其中的<code>mapLimit</code>方法来实现并行执行爬虫.<code>mapLimit(coll,limit, iteratee, callbackopt)</code>接收四个参数:</h5><h5 id="coll-是一个迭代器-代表要迭代的集合"><a href="#coll-是一个迭代器-代表要迭代的集合" class="headerlink" title="coll:是一个迭代器,代表要迭代的集合"></a>coll:是一个迭代器,代表要迭代的集合</h5><h5 id="limit-数字代表同时执行并行的限制"><a href="#limit-数字代表同时执行并行的限制" class="headerlink" title="limit:数字代表同时执行并行的限制"></a>limit:数字代表同时执行并行的限制</h5><h5 id="iteratee-迭代器方法-对于coll中的每一个item，迭代执行该异步函数。用-item-callback-调用，callback可选"><a href="#iteratee-迭代器方法-对于coll中的每一个item，迭代执行该异步函数。用-item-callback-调用，callback可选" class="headerlink" title="iteratee:迭代器方法,对于coll中的每一个item，迭代执行该异步函数。用(item, callback)调用，callback可选"></a>iteratee:迭代器方法,对于coll中的每一个item，迭代执行该异步函数。用(item, callback)调用，callback可选</h5><h5 id="callbackopt-所有iteratee-函数完成后或发生错误时触发的回调函数。用-err-results-调用。"><a href="#callbackopt-所有iteratee-函数完成后或发生错误时触发的回调函数。用-err-results-调用。" class="headerlink" title="callbackopt:所有iteratee 函数完成后或发生错误时触发的回调函数。用(err, results)调用。"></a>callbackopt:所有iteratee 函数完成后或发生错误时触发的回调函数。用(err, results)调用。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const puppeteer = require(&apos;puppeteer&apos;)</span><br><span class="line">const cheerio = require(&apos;cheerio&apos;)</span><br><span class="line">const mapLimit  = require(&apos;async/mapLimit&apos;)</span><br><span class="line"></span><br><span class="line">const URL = &apos;https://music.163.com&apos;</span><br><span class="line">//标签集合</span><br><span class="line">const type =[&apos;华语&apos;,&apos;欧美&apos;,&apos;日语&apos;,&apos;韩语&apos;,&apos;粤语&apos;,&apos;小语种&apos;]</span><br><span class="line">async function start(type,callback)&#123;</span><br><span class="line">	const browser = await puppeteer.launch(&#123;</span><br><span class="line">		headless:true</span><br><span class="line">	&#125;)</span><br><span class="line">	const page = await browser.newPage()</span><br><span class="line">	await page.goto(`$&#123;URL&#125;/discover/playlist/?cat=$&#123;type&#125;`)</span><br><span class="line">	const $ = cheerio.load(await page.mainFrame().childFrames()[0].content())</span><br><span class="line">	const list = $(&apos;#m-pl-container&apos;).find(&apos;li&apos;)</span><br><span class="line">	let album = []</span><br><span class="line">	Array.from(list).forEach(ele=&gt;&#123;</span><br><span class="line">		let obj =&#123;</span><br><span class="line">			name:$(ele).find(&apos;.dec a&apos;).attr(&apos;title&apos;),</span><br><span class="line">			href:$(ele).find(&apos;.dec a&apos;).attr(&apos;href&apos;)</span><br><span class="line">		&#125;</span><br><span class="line">		album.push(obj)</span><br><span class="line">	&#125;)</span><br><span class="line">	callback(null,album)</span><br><span class="line">	await browser.close()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mapLimit(type,5,(type,callback)=&gt;&#123;</span><br><span class="line">//设置并发数为 5</span><br><span class="line">	start(type,callback)</span><br><span class="line">&#125;,(err,result)=&gt;&#123;</span><br><span class="line">	for(let index in result)&#123;</span><br><span class="line">		console.log(result[index])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>result:<br>    <img src="/blog/images/album_list.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/08/使用Puppeteer爬虫/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -514,7 +669,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

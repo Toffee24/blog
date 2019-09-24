@@ -326,6 +326,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/03/05/Java链表基本功能实现/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/03/05/Java链表基本功能实现/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/4/index.html">Java链表基本功能实现</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-05 10:13:02 / 修改时间：10:55:06" itemprop="dateCreated datePublished" datetime="2019-03-05T10:13:02+08:00">2019-03-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的指针(Pointer)。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
+<p>使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>一个基本的Java链表主要有一下的功能:</p>
+<h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><p>首先,新建一个List类,以及一个Node类,通过List类来调用方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">List</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node root;<span class="comment">//定义链表的根节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">//定义当前列表节点个数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String data;<span class="comment">//这是一个数据类型是 String 的链表</span></span><br><span class="line">    <span class="keyword">private</span> Node next; <span class="comment">//每个Node类需要一个指向当前Node的下一个Node,才行形成链关系</span></span><br><span class="line">    </span><br><span class="line">    <span class="function">pulic <span class="title">Node</span><span class="params">(String data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">getNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>定义完基本数据类,我们来实现add方法<br>在List中定义<code>add</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String data)</span></span>&#123;</span><br><span class="line">    Node newNode = <span class="keyword">new</span> Node(data);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.root == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.root = newNode;</span><br><span class="line">    &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.root.addNode(newNode,<span class="keyword">this</span>); <span class="comment">//我们需要传入当前list对象,用于新增节点后跟新count</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Node类中实现<code>addNode</code>,它接受一个Node类型参数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(Node newNode,List list)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>.equals(newNode))&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">this</span>.next = newNode;</span><br><span class="line">                list.addCount();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//如果当前下个节点不为空,则让next继续调用addNode方法</span></span><br><span class="line">                <span class="keyword">this</span>.next.addNode(newNode,list);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//为了做到不重复新增数据,我们需要在Node类中实现一个equals方法</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Node node)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.data == node.data)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><p>get方法接受一个int类型的序号,用于找到当前类型对应位置的节点数据,在List类中定义<code>get</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.root.get(index, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Node类中定义<code>getNode</code>方法,它除了接受<code>index</code>参数外,还接受一个步进参数<code>step</code>,用于匹配index是否等于当前<code>step</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> step)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index == step) <span class="keyword">return</span> <span class="keyword">this</span>.data;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.next.get(index, ++step);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p><code>set</code>方法用于重新设置链表对应位置节点的数据,<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, String data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.root == <span class="keyword">null</span> || index &lt; <span class="number">0</span> || index &gt; <span class="keyword">this</span>.count) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">this</span>.root.setNode(index, data, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="contains"><a href="#contains" class="headerlink" title="contains"></a>contains</h3><p><code>contains</code>方法返回一个<code>Boolean</code>,判断当前列表是否存在对应的数据<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.root.containNode(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Node类中定义<code>containNode</code>方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Node</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containNode</span><span class="params">(String data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.data.equals(data)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.next == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.next.containNode(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="size"><a href="#size" class="headerlink" title="size"></a>size</h3><p>返回当前链表节点个数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="isEmpty"><a href="#isEmpty" class="headerlink" title="isEmpty"></a>isEmpty</h3><p>判断当前链表是否为空<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.count == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h3><p>删除节点数据<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(String data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.root == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.root.equals(data)) &#123; <span class="comment">//根节点特殊处理</span></span><br><span class="line">        <span class="keyword">this</span>.root = <span class="keyword">this</span>.root.getNext();</span><br><span class="line">        <span class="keyword">this</span>.count--;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.root.removeNode(<span class="keyword">this</span>.root, data,<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//同add操作,还需要另外定义一个reduceCount方法供Node实例调用</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reduceCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.count--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Node类中定义removeNode<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Node</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeNode</span><span class="params">(Node pre, String data, List list)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.data.equals(data)) &#123;</span><br><span class="line">        pre.next = <span class="keyword">this</span>.next;</span><br><span class="line">        list.reduceCount();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.next != <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">this</span>.next.removeNode(<span class="keyword">this</span>, data,list);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h3><p>将当前链表输出为<code>array</code>数组对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List 新增一个私有属性arrayList</span></span><br><span class="line"><span class="keyword">private</span> String[] arrayList;</span><br><span class="line"></span><br><span class="line">publice String[] toArray()&#123;</span><br><span class="line">    <span class="keyword">this</span>.arrayList = <span class="keyword">new</span> String[<span class="keyword">this</span>.count];</span><br><span class="line">    <span class="keyword">this</span>.root.toArrayNode(arrayList,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.arrayList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Node类中定义<code>toArrayNode</code>方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Node</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toArrayNode</span><span class="params">(String [] array,<span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line">    array[step] = <span class="keyword">this</span>.data;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.next.toArrayNode(array,++step);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/02/18/组件化开发/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -912,161 +1070,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/12/12/event-bus发布订阅实现/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Toffee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Toffee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2018/12/12/event-bus发布订阅实现/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/4/index.html">event-bus发布订阅实现</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-12 17:10:15" itemprop="dateCreated datePublished" datetime="2018-12-12T17:10:15+08:00">2018-12-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-12-15 23:55:59" itemprop="dateModified" datetime="2018-12-15T23:55:59+08:00">2018-12-15</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一个简单的实现了事件注册,订阅,注销的eventEmeitter</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventEmeitter</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>._events = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    emit(type,context,...args)&#123;</span><br><span class="line">        <span class="keyword">const</span> handler = <span class="keyword">this</span>._events.get(type)</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> handler !== <span class="string">'function'</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">`[<span class="subst">$&#123;type&#125;</span>] 未绑定事件`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(args.length &gt;= <span class="number">3</span>)&#123;</span><br><span class="line">            handler.apply(context,args)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            handler.call(context,...args)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addEventListener(type,fn)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span>._events.get(type))&#123;</span><br><span class="line">            <span class="keyword">this</span>._events.set(type,fn)</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`[<span class="subst">$&#123;type&#125;</span>] 事件绑定`</span>)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">`[<span class="subst">$&#123;type&#125;</span>] 事件已绑定`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    removeEventListener(type)&#123;</span><br><span class="line">        <span class="keyword">this</span>._events.delete(type)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`[<span class="subst">$&#123;type&#125;</span>] 事件移除`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> emitter = <span class="keyword">new</span> EventEmeitter()</span><br><span class="line">emitter.addEventListener(<span class="string">'christmas'</span>,s=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Merry <span class="subst">$&#123;s&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br><span class="line">emitter.emit(<span class="string">'christmas'</span>,<span class="keyword">this</span>,<span class="string">'Christmas'</span>)</span><br><span class="line">emitter.removeEventListener(<span class="string">'Christmas'</span>)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">[christmas] 事件绑定</span><br><span class="line">Merry Christmas</span><br><span class="line">[Christmas] 事件移除</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1116,7 +1119,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -108,24 +108,24 @@
 
 
 
-  <meta name="description" content="Chrome快捷键对于一天用到将近百余次的ctrl+w的我来说,一直觉得chrome原本的ctrl+w的按键有点别扭,终于在今天忍不住了,开始寻找如何去修改chrome默认的快捷键。在设置里找了一圈,发现没有,无奈google了一下,发现有这么几种办法  安装chrome插件 如Shortkeys等 修改chrome系统文件我综合了一下,发现我只需要实现alt + w关闭浏览器TAB的功能,这么折">
+  <meta name="description" content="异步组件加载与webpack SplitChunks在我们平时的开发工作中，为了减少首屏代码体积，往往会把一些非首屏的组件设计成异步组件，按需加载。利用webpack对代码进行分割是懒加载的前提，懒加载就是异步调用组件，需要时候才下载（按需加载）。通过异步组件结合webpack的代码按需加载，我们可以得到两点好处：  用不到的组件不会加载，因此网页打开速度会很快，当你用到这个组件的时候，才会通过异">
 <meta property="og:type" content="article">
-<meta property="og:title" content="chrome快捷键太反人类?不想安装额外插件?那就用TamperMonkey写个脚本">
-<meta property="og:url" content="https://toffee24.github.io/blog/2019/07/19/chrome快捷键太反人类-不想安装额外插件-那就用TamperMonkey写个脚本/index.html">
+<meta property="og:title" content="在vue和react中处理异步组件加载状态">
+<meta property="og:url" content="https://toffee24.github.io/blog/2019/09/24/在react和vue中处理异步组件加载状态/index.html">
 <meta property="og:site_name" content="Toffee&#39;s Blog">
-<meta property="og:description" content="Chrome快捷键对于一天用到将近百余次的ctrl+w的我来说,一直觉得chrome原本的ctrl+w的按键有点别扭,终于在今天忍不住了,开始寻找如何去修改chrome默认的快捷键。在设置里找了一圈,发现没有,无奈google了一下,发现有这么几种办法  安装chrome插件 如Shortkeys等 修改chrome系统文件我综合了一下,发现我只需要实现alt + w关闭浏览器TAB的功能,这么折">
+<meta property="og:description" content="异步组件加载与webpack SplitChunks在我们平时的开发工作中，为了减少首屏代码体积，往往会把一些非首屏的组件设计成异步组件，按需加载。利用webpack对代码进行分割是懒加载的前提，懒加载就是异步调用组件，需要时候才下载（按需加载）。通过异步组件结合webpack的代码按需加载，我们可以得到两点好处：  用不到的组件不会加载，因此网页打开速度会很快，当你用到这个组件的时候，才会通过异">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-22T02:49:30.118Z">
+<meta property="og:updated_time" content="2019-09-24T07:20:18.003Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chrome快捷键太反人类?不想安装额外插件?那就用TamperMonkey写个脚本">
-<meta name="twitter:description" content="Chrome快捷键对于一天用到将近百余次的ctrl+w的我来说,一直觉得chrome原本的ctrl+w的按键有点别扭,终于在今天忍不住了,开始寻找如何去修改chrome默认的快捷键。在设置里找了一圈,发现没有,无奈google了一下,发现有这么几种办法  安装chrome插件 如Shortkeys等 修改chrome系统文件我综合了一下,发现我只需要实现alt + w关闭浏览器TAB的功能,这么折">
+<meta name="twitter:title" content="在vue和react中处理异步组件加载状态">
+<meta name="twitter:description" content="异步组件加载与webpack SplitChunks在我们平时的开发工作中，为了减少首屏代码体积，往往会把一些非首屏的组件设计成异步组件，按需加载。利用webpack对代码进行分割是懒加载的前提，懒加载就是异步调用组件，需要时候才下载（按需加载）。通过异步组件结合webpack的代码按需加载，我们可以得到两点好处：  用不到的组件不会加载，因此网页打开速度会很快，当你用到这个组件的时候，才会通过异">
 
 
 
 
 
 
-  <link rel="canonical" href="https://toffee24.github.io/blog/2019/07/19/chrome快捷键太反人类-不想安装额外插件-那就用TamperMonkey写个脚本/">
+  <link rel="canonical" href="https://toffee24.github.io/blog/2019/09/24/在react和vue中处理异步组件加载状态/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>chrome快捷键太反人类?不想安装额外插件?那就用TamperMonkey写个脚本 | Toffee's Blog</title>
+  <title>在vue和react中处理异步组件加载状态 | Toffee's Blog</title>
   
 
 
@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/07/19/chrome快捷键太反人类-不想安装额外插件-那就用TamperMonkey写个脚本/">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/09/24/在react和vue中处理异步组件加载状态/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Toffee">
@@ -346,7 +346,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">chrome快捷键太反人类?不想安装额外插件?那就用TamperMonkey写个脚本
+          <h2 class="post-title" itemprop="name headline">在vue和react中处理异步组件加载状态
               
             
           </h2>
@@ -371,24 +371,12 @@
                 
               
 
-              <time title="创建时间：2019-07-19 17:15:07" itemprop="dateCreated datePublished" datetime="2019-07-19T17:15:07+08:00">2019-07-19</time>
+              <time title="创建时间：2019-09-24 14:49:23 / 修改时间：15:20:18" itemprop="dateCreated datePublished" datetime="2019-09-24T14:49:23+08:00">2019-09-24</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-22 10:49:30" itemprop="dateModified" datetime="2019-07-22T10:49:30+08:00">2019-07-22</time>
               
             
           </span>
@@ -421,13 +409,17 @@
       
 
       
-        <h3 id="Chrome快捷键"><a href="#Chrome快捷键" class="headerlink" title="Chrome快捷键"></a>Chrome快捷键</h3><p>对于一天用到将近百余次的<code>ctrl</code>+<code>w</code>的我来说,一直觉得chrome原本的<code>ctrl</code>+<code>w</code>的按键有点别扭,终于在今天忍不住了,开始寻找如何去修改chrome默认的快捷键。在设置里找了一圈,发现没有,无奈google了一下,发现有这么几种办法</p>
+        <h3 id="异步组件加载与webpack-SplitChunks"><a href="#异步组件加载与webpack-SplitChunks" class="headerlink" title="异步组件加载与webpack SplitChunks"></a>异步组件加载与webpack SplitChunks</h3><p>在我们平时的开发工作中，为了减少首屏代码体积，往往会把一些非首屏的组件设计成异步组件，按需加载。利用webpack对代码进行分割是懒加载的前提，懒加载就是异步调用组件，需要时候才下载（按需加载）。<br>通过异步组件结合webpack的代码按需加载，我们可以得到两点好处：</p>
 <ul>
-<li>安装chrome插件 如Shortkeys等</li>
-<li>修改chrome系统文件<br>我综合了一下,发现我只需要实现<code>alt</code> + <code>w</code>关闭浏览器TAB的功能,这么折腾似乎不太经济,突然想到我有安装<code>TamperMonkey</code>油猴插件,于是便想到自己动手写个js脚本完事</li>
+<li>用不到的组件不会加载，因此网页打开速度会很快，当你用到这个组件的时候，才会通过异步请求进行加载；</li>
+<li>缓存组件，通过异步加载的组件会缓存起来，当你下一次再用到这个组件时，丝毫不会有任何的疑迟，组件很快会从缓存中加载出来。</li>
 </ul>
-<h3 id="TamperMonkey"><a href="#TamperMonkey" class="headerlink" title="TamperMonkey"></a>TamperMonkey</h3><p>TamperMonkey是一个浏览器插件,它是一个脚本管理器,通过<a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">脚本市场</a>安装第三方js脚本,可以实现非常多的拓展功能,可以就不展开了<br>我们新建一个脚本文件,注意脚本文件开头 <code>match</code>选项表示脚本应用的范围,这里我们应用所有网站<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// @match        http://*/*</span><br><span class="line">// @match        https://*/*</span><br></pre></td></tr></table></figure></p>
-<h3 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h3><p>好了,下面就开始编写我们的脚本,TamperMonkey脚本文件实质就是输出个js IFFE(立即执行函数),<br>脚本内容都编写在里面,我们只需要全局监听<code>onkeydown</code>事件,判断是否同时按下<code>alt</code> + <code>w</code>,然后执行<code>window.close()</code>关闭页面就可以了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'keydown'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (event.altKey &amp;&amp; event.keyCode == <span class="number">87</span>) &#123;</span><br><span class="line">           <span class="built_in">window</span>.location.href = <span class="string">"about:blank"</span></span><br><span class="line">          <span class="built_in">window</span>.close()</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></p>
+<p>关于webpack splitChunks,可以阅读腾讯IMWeb的文章,介绍的非常详细了,<a href="https://imweb.io/topic/5b66dd601402769b60847149" target="_blank" rel="noopener">点击链接</a><br>异步加载虽然由以上的好处,但是必然有一个问题,就是在浏览器下载异步组件的代码时(比如新页面路由切换),如果网速比较慢的话,会显示白屏界面。那么,如何实现在浏览器下载异步组件的同时让页面展示诸如loading类的等待界面呢?</p>
+<h3 id="vue中处理异步组件加载状态"><a href="#vue中处理异步组件加载状态" class="headerlink" title="vue中处理异步组件加载状态"></a>vue中处理异步组件加载状态</h3><h4 id="声明方法"><a href="#声明方法" class="headerlink" title="声明方法"></a>声明方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 处理路由页面切换时，异步组件加载过渡的处理函数</span></span><br><span class="line"><span class="comment"> * @param  &#123;Object&#125; AsyncView 需要加载的组件，如 import('@/components/home/Home.vue')</span></span><br><span class="line"><span class="comment"> * @return &#123;Object&#125; 返回一个promise对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazyLoadView</span> (<span class="params">AsyncView</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> AsyncHandler = <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</span><br><span class="line">    <span class="comment">// 需要加载的组件 (应该是一个 `Promise` 对象)</span></span><br><span class="line">    component: AsyncView,</span><br><span class="line">    <span class="comment">// 异步组件加载时使用的组件</span></span><br><span class="line">    loading: <span class="keyword">import</span>(<span class="string">'@/components/public/RouteLoading.vue'</span>),</span><br><span class="line">    <span class="comment">// 加载失败时使用的组件</span></span><br><span class="line">    error: <span class="keyword">import</span>(<span class="string">'@/components/public/RouteError.vue'</span>),</span><br><span class="line">    <span class="comment">// 展示加载时组件的延时时间。默认值是 200 (毫秒)</span></span><br><span class="line">    delay: <span class="number">200</span>,</span><br><span class="line">    <span class="comment">// 如果提供了超时时间且组件加载也超时了，</span></span><br><span class="line">    <span class="comment">// 则使用加载失败时使用的组件。默认值是：`Infinity`</span></span><br><span class="line">    timeout: <span class="number">10000</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(&#123;</span><br><span class="line">    functional: <span class="literal">true</span>,</span><br><span class="line">    render (h, &#123; data, children &#125;) &#123;</span><br><span class="line">      <span class="keyword">return</span> h(AsyncHandler, data, children);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="引入路由并使用"><a href="#引入路由并使用" class="headerlink" title="引入路由并使用"></a>引入路由并使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> helloWorld = <span class="function"><span class="params">()</span> =&gt;</span> lazyLoadView(<span class="keyword">import</span>(<span class="string">'@/components/helloWorld'</span>))</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	routes: [</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/helloWorld'</span>,</span><br><span class="line">            name: <span class="string">'helloWorld'</span>,</span><br><span class="line">            component: helloWorld</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://cn.vuejs.org/v2/guide/components-dynamic-async.html#%E5%A4%84%E7%90%86%E5%8A%A0%E8%BD%BD%E7%8A%B6%E6%80%81" target="_blank" rel="noopener">相关文档链接</a></p>
+<h3 id="react中处理异步组件加载状态"><a href="#react中处理异步组件加载状态" class="headerlink" title="react中处理异步组件加载状态"></a>react中处理异步组件加载状态</h3><h4 id="react-loadable"><a href="#react-loadable" class="headerlink" title="react-loadable"></a>react-loadable</h4><p>react-loadable是基于react的高阶组件,它专门用来处理异步路由加载状态,并且可以用于SSR服务端渲染<br><a href="https://github.com/jamiebuilds/react-loadable" target="_blank" rel="noopener">相关文档链接</a></p>
+<h4 id="使用react-loadable"><a href="#使用react-loadable" class="headerlink" title="使用react-loadable"></a>使用react-loadable</h4><figure class="highlight jsx"><figcaption><span>harmony</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Loadable <span class="keyword">from</span> <span class="string">'react-loadable'</span>;</span><br><span class="line"><span class="keyword">import</span> Loading <span class="keyword">from</span> <span class="string">'./my-loading-component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> LoadableComponent = Loadable(&#123;</span><br><span class="line">  loader: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./my-component'</span>),</span><br><span class="line">  loading: Loading,</span><br><span class="line">  delay: <span class="number">200</span>,</span><br><span class="line">  timeout: <span class="number">10000</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;LoadableComponent/&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -458,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/07/11/收集常用的css代码/" rel="next" title="收集常用的css代码">
-                <i class="fa fa-chevron-left"></i> 收集常用的css代码
+              <a href="/blog/2019/09/20/用eslint,prettier,pre-commit规范前端代码/" rel="next" title="用eslint & prettier & pre-commit规范前端代码格式">
+                <i class="fa fa-chevron-left"></i> 用eslint & prettier & pre-commit规范前端代码格式
               </a>
             
           </div>
@@ -467,10 +459,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/08/21/transition实现原生页面跳转效果/" rel="prev" title="vue transition实现原生页面跳转效果">
-                vue transition实现原生页面跳转效果 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -629,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Chrome快捷键"><span class="nav-number">1.</span> <span class="nav-text">Chrome快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TamperMonkey"><span class="nav-number">2.</span> <span class="nav-text">TamperMonkey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写脚本"><span class="nav-number">3.</span> <span class="nav-text">编写脚本</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步组件加载与webpack-SplitChunks"><span class="nav-number">1.</span> <span class="nav-text">异步组件加载与webpack SplitChunks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue中处理异步组件加载状态"><span class="nav-number">2.</span> <span class="nav-text">vue中处理异步组件加载状态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明方法"><span class="nav-number">2.1.</span> <span class="nav-text">声明方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引入路由并使用"><span class="nav-number">2.2.</span> <span class="nav-text">引入路由并使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react中处理异步组件加载状态"><span class="nav-number">3.</span> <span class="nav-text">react中处理异步组件加载状态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#react-loadable"><span class="nav-number">3.1.</span> <span class="nav-text">react-loadable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用react-loadable"><span class="nav-number">3.2.</span> <span class="nav-text">使用react-loadable</span></a></li></ol></li></ol></div>
             
 
           </div>
