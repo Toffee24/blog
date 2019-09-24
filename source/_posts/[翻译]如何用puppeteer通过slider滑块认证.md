@@ -40,7 +40,6 @@ async function run() {
         defaultViewport: { width: 1366, height: 768 }
     })
     const page = await browser.newPage()
-
     await page.goto('http://kthornbloom.com/slidetosubmit/')
     await page.type('input[name="name"]', 'Puppeteer Bot')
     await page.type('input[name="email"]', 'js@automation.com')
@@ -65,6 +64,7 @@ async function run() {
 
 run()
 ```
+<!-- more -->
 
 ### Dipbit注册滑块验证
 Dipbit是一个数字货币兑换网站。登录页面和注册页面都有滑块验证。

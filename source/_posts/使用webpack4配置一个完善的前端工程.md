@@ -64,6 +64,8 @@ yarn add @babel/polyfill @babel/runtime
   "plugins": ["@babel/plugin-transform-runtime"]
 }
 ```
+<!-- more -->
+
 ### 5、按需引入babel-polyfill
 一般地,安装完`@babel/polyfill`之后,在入口文件直接`import`,但这样会有导致引入不需要的语法垫片,导致打包出来的文件过大的问题
 当配合`@babel/preset-env`一起使用时,更改`.babelrc`

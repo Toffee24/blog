@@ -123,7 +123,7 @@ Vue.component('brother1',{
         `
     })
 ```
-
+<!-- more -->
 ### provide和inject
 父组件中通过provider来提供变量，然后在子组件中通过inject来注入变量。不论子组件有多深，只要调用了inject那么就可以注入provider中的数据。而不是局限于只能从当前父组件的prop属性来获取数据，只要在父组件的生命周期内，子组件都可以调用。
 ```javascript
