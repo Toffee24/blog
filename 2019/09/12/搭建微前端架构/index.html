@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://toffee24.github.io/blog/images/micro-fe-1.png">
 <meta property="og:image" content="https://toffee24.github.io/blog/images/micro-fe-2.png">
-<meta property="og:updated_time" content="2019-09-12T09:55:38.557Z">
+<meta property="og:updated_time" content="2019-09-24T08:00:47.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建微前端架构">
 <meta name="twitter:description" content="什么是微前端微前端是一种类似于微服务的架构,它将微服务的理念应用于浏览器端,即将单页面前端应用由单一应用转变为把多个小型前端应用聚合为一的应用。各个前端应用还可以独立开发、独立部署。同时,它们也可以进行并行开发—这些组件可以通过NPM,GIT或者SVN来管理。 微前端架构特点 应用自治,即每个子应用之间不存在依赖关系,替换其中一个子应用而整体不受影响 单一职责,即微前端架构应该满足单一职责的原则">
@@ -374,12 +374,24 @@
                 
               
 
-              <time title="创建时间：2019-09-12 15:12:14 / 修改时间：17:55:38" itemprop="dateCreated datePublished" datetime="2019-09-12T15:12:14+08:00">2019-09-12</time>
+              <time title="创建时间：2019-09-12 15:12:14" itemprop="dateCreated datePublished" datetime="2019-09-12T15:12:14+08:00">2019-09-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-24 16:00:47" itemprop="dateModified" datetime="2019-09-24T16:00:47+08:00">2019-09-24</time>
               
             
           </span>
@@ -424,7 +436,7 @@
 <h4 id="4-微件化"><a href="#4-微件化" class="headerlink" title="4.微件化"></a>4.微件化</h4><p>将业务功能拆分成独立的chunk代码,加载即可运行</p>
 <h4 id="5-前端容器化"><a href="#5-前端容器化" class="headerlink" title="5.前端容器化"></a>5.前端容器化</h4><p>iframe</p>
 <h4 id="6-应用组件化"><a href="#6-应用组件化" class="headerlink" title="6.应用组件化"></a>6.应用组件化</h4><p>Web Components技术</p>
-<h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>这里我们将使用第二种方式,使用前端微服务化的方式将基于<code>create-react-app</code>脚手架搭建的react应用以及<code>vue-cli</code>搭建的vue应用合并在一个基座应用上,做到子应用可以独立开发,分别部署的同时也能做到合并在一起成为一个聚合应用</p>
+<h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>这里我们将使用第二种方式,使用前端微服务化的方式将基于<code>create-react-app</code>脚手架搭建的react应用以及<code>vue-cli</code>搭建的vue应用合并在一个基座应用上,做到子应用可以独立开发,分别部署的同时也能做到合并在一起成为一个聚合应用<br><a id="more"></a></p>
 <h3 id="普通SPA对比前端微服务化"><a href="#普通SPA对比前端微服务化" class="headerlink" title="普通SPA对比前端微服务化"></a>普通SPA对比前端微服务化</h3><h4 id="普通单体应用"><a href="#普通单体应用" class="headerlink" title="普通单体应用"></a>普通单体应用</h4><p><img src="/blog/images/micro-fe-1.png" width="50%"></p>
 <h4 id="微前端架构"><a href="#微前端架构" class="headerlink" title="微前端架构"></a>微前端架构</h4><p><img src="/blog/images/micro-fe-2.png" width="50%"></p>
 <h4 id="基座模式"><a href="#基座模式" class="headerlink" title="基座模式"></a>基座模式</h4><p>在这里,我们将通过一个主应用，来管理其它子应用,它主要实现了以下的功能</p>
