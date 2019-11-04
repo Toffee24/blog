@@ -108,24 +108,24 @@
 
 
 
-  <meta name="description" content="我现在坐在太阳底下来往的人都打着伞我不愿打伞我喜欢这个温度我看见一束花紫色的你知道我在说什么吗我是说凉薄也好">
+  <meta name="description" content="背景由于项目需要引入countup.js插件用于将数字实现累加动画效果,而且由于是vue项目,发现文档里有专门对vue封装的组件vue-countup-v2,所以自然而然yarn add countup.js vue-countup-v2然后根据文档一步一步下来,一切ok随后想了想,需要安装两个依赖并且vue-countup-v2只是一个组件封装,那么为什么不用vue directives指令来写">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2019.10.4">
-<meta property="og:url" content="https://toffee24.github.io/blog/2019/10/04/2019/10/4/index.html">
+<meta property="og:title" content="Vue插件以及自定义指令实践">
+<meta property="og:url" content="https://toffee24.github.io/blog/2019/11/04/Vue插件以及自定义指令实践/index.html">
 <meta property="og:site_name" content="Toffee&#39;s Blog">
-<meta property="og:description" content="我现在坐在太阳底下来往的人都打着伞我不愿打伞我喜欢这个温度我看见一束花紫色的你知道我在说什么吗我是说凉薄也好">
+<meta property="og:description" content="背景由于项目需要引入countup.js插件用于将数字实现累加动画效果,而且由于是vue项目,发现文档里有专门对vue封装的组件vue-countup-v2,所以自然而然yarn add countup.js vue-countup-v2然后根据文档一步一步下来,一切ok随后想了想,需要安装两个依赖并且vue-countup-v2只是一个组件封装,那么为什么不用vue directives指令来写">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-23T10:06:36.781Z">
+<meta property="og:updated_time" content="2019-11-04T09:24:04.224Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2019.10.4">
-<meta name="twitter:description" content="我现在坐在太阳底下来往的人都打着伞我不愿打伞我喜欢这个温度我看见一束花紫色的你知道我在说什么吗我是说凉薄也好">
+<meta name="twitter:title" content="Vue插件以及自定义指令实践">
+<meta name="twitter:description" content="背景由于项目需要引入countup.js插件用于将数字实现累加动画效果,而且由于是vue项目,发现文档里有专门对vue封装的组件vue-countup-v2,所以自然而然yarn add countup.js vue-countup-v2然后根据文档一步一步下来,一切ok随后想了想,需要安装两个依赖并且vue-countup-v2只是一个组件封装,那么为什么不用vue directives指令来写">
 
 
 
 
 
 
-  <link rel="canonical" href="https://toffee24.github.io/blog/2019/10/04/2019/10/4/">
+  <link rel="canonical" href="https://toffee24.github.io/blog/2019/11/04/Vue插件以及自定义指令实践/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>2019.10.4 | Toffee's Blog</title>
+  <title>Vue插件以及自定义指令实践 | Toffee's Blog</title>
   
 
 
@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/10/04/2019/10/4/">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/11/04/Vue插件以及自定义指令实践/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Toffee">
@@ -346,7 +346,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">2019.10.4
+          <h2 class="post-title" itemprop="name headline">Vue插件以及自定义指令实践
               
             
           </h2>
@@ -371,24 +371,12 @@
                 
               
 
-              <time title="创建时间：2019-10-04 08:19:14" itemprop="dateCreated datePublished" datetime="2019-10-04T08:19:14+08:00">2019-10-04</time>
+              <time title="创建时间：2019-11-04 16:46:06 / 修改时间：17:24:04" itemprop="dateCreated datePublished" datetime="2019-11-04T16:46:06+08:00">2019-11-04</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-23 18:06:36" itemprop="dateModified" datetime="2019-10-23T18:06:36+08:00">2019-10-23</time>
               
             
           </span>
@@ -421,7 +409,16 @@
       
 
       
-        <p>我现在坐在太阳底下<br>来往的人都打着伞<br>我不愿打伞<br>我喜欢这个温度<br>我看见一束花<br>紫色的<br>你知道我在说什么吗<br>我是说<br>凉薄也好</p>
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>由于项目需要引入<code>countup.js</code>插件用于将数字实现累加动画效果,而且由于是vue项目,发现文档里有专门对vue封装的组件<code>vue-countup-v2</code>,所以自然而然<br><code>yarn add countup.js vue-countup-v2</code><br>然后根据文档一步一步下来,一切ok<br>随后想了想,需要安装两个依赖并且<code>vue-countup-v2</code>只是一个组件封装,那么为什么不用<code>vue directives</code>指令来写呢?</p>
+<h3 id="vue-directives自定义指令"><a href="#vue-directives自定义指令" class="headerlink" title="vue-directives自定义指令"></a>vue-directives自定义指令</h3><p>vue指令其实随处都会用到,比如<code>v-if</code>,<code>v-show</code>,<code>v-for</code>等等,对于特殊场景,vue也提供注册自定义指令的方法,有两种方法可以注册自定义指令,分别是<code>Vue.directive</code>注册全局指令以及在组件中配置<code>directives</code>注册局部指令,在这里,全局指令更适合本场景,所以决定使用<code>Vue.directive</code></p>
+<h3 id="开始编写"><a href="#开始编写" class="headerlink" title="开始编写"></a>开始编写</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; CountUp &#125; <span class="keyword">from</span> <span class="string">'countup.js'</span></span><br><span class="line">Vue.directive(<span class="string">'countUp'</span>, &#123;</span><br><span class="line">            bind (el) &#123;</span><br><span class="line">                el.countUpComponent = <span class="keyword">new</span> CountUp(el, <span class="number">0</span>, &#123;</span><br><span class="line">                    duration: <span class="number">1</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            update (el, binding) &#123;</span><br><span class="line">                el.countUpComponent.update(binding.value || <span class="number">0</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>在这里,<code>bind</code>方法只调用一次，指令第一次绑定到元素时调用。在这里可以进行初始化<code>Countup</code>对象,之所以不用<code>inserted</code>方法是因为根据文档描述,<code>inserted</code>方法并不一定可以获取到dom对象示例,这就会导致<code>new Countup</code>示例时报错<br>在<code>el</code>对象上挂载实例对象,这样,在<code>update</code>触发时,可以执行<code>update</code>方法触发数字更新动画<br>这里,<code>binding</code>对象可以获取到我们传给指令的参数,进而执行<code>update</code>方法</p>
+<h3 id="vue插件编写"><a href="#vue插件编写" class="headerlink" title="vue插件编写"></a>vue插件编写</h3><p>其实,上述代码已经可以实现功能了,但是为了降低代码的耦合性,我们可以将它封装成一个插件<br>写vue插件需要暴露一个<code>install</code>方法,这个方法接收两个参数,第一个参数是<code>Vue</code>构造器，第二个参数是一个可选的选项对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// countUp-directive.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; CountUp &#125; <span class="keyword">from</span> <span class="string">'countup.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    install (Vue, options) &#123;</span><br><span class="line">        Vue.directive(<span class="string">'countUp'</span>, &#123;</span><br><span class="line">            bind (el) &#123;</span><br><span class="line">                el.countUpComponent = <span class="keyword">new</span> CountUp(el, <span class="number">0</span>, &#123;</span><br><span class="line">                    duration: <span class="number">1</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            update (el, binding) &#123;</span><br><span class="line">                el.countUpComponent.update(binding.value || <span class="number">0</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> CountUp <span class="keyword">from</span> <span class="string">'./countup-directive'</span></span><br><span class="line">Vue.use(CountUp)</span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用就很简单了,直接看代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;em v-countUp=&quot;countNumber&quot;&gt;&lt;/em&gt;</span><br></pre></td></tr></table></figure></p>
+<p>传入<code>countNumber</code>就可以了</p>
+<h3 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h3><p><a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank" rel="noopener">Vue自定义指令</a><br><a href="https://cn.vuejs.org/v2/guide/plugins.html" target="_blank" rel="noopener">Vue插件</a><br><a href="https://github.com/inorganik/countUp.js/" target="_blank" rel="noopener">countup.js</a></p>
 
       
     </div>
@@ -452,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/09/24/在react和vue中处理异步组件加载状态/" rel="next" title="在vue和react中处理异步组件加载状态">
-                <i class="fa fa-chevron-left"></i> 在vue和react中处理异步组件加载状态
+              <a href="/blog/2019/10/04/也还好/" rel="next" title="也还好">
+                <i class="fa fa-chevron-left"></i> 也还好
               </a>
             
           </div>
@@ -505,8 +502,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -523,7 +529,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -600,6 +606,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-directives自定义指令"><span class="nav-number">2.</span> <span class="nav-text">vue-directives自定义指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始编写"><span class="nav-number">3.</span> <span class="nav-text">开始编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue插件编写"><span class="nav-number">4.</span> <span class="nav-text">vue插件编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">5.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关文档"><span class="nav-number">6.</span> <span class="nav-text">相关文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

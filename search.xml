@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[2019.10.4]]></title>
-    <url>%2Fblog%2F2019%2F10%2F04%2F2019%2F10%2F4%2F</url>
+    <title><![CDATA[Vue插件以及自定义指令实践]]></title>
+    <url>%2Fblog%2F2019%2F11%2F04%2FVue%E6%8F%92%E4%BB%B6%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E5%AE%9E%E8%B7%B5%2F</url>
+    <content type="text"><![CDATA[背景由于项目需要引入countup.js插件用于将数字实现累加动画效果,而且由于是vue项目,发现文档里有专门对vue封装的组件vue-countup-v2,所以自然而然yarn add countup.js vue-countup-v2然后根据文档一步一步下来,一切ok随后想了想,需要安装两个依赖并且vue-countup-v2只是一个组件封装,那么为什么不用vue directives指令来写呢? vue-directives自定义指令vue指令其实随处都会用到,比如v-if,v-show,v-for等等,对于特殊场景,vue也提供注册自定义指令的方法,有两种方法可以注册自定义指令,分别是Vue.directive注册全局指令以及在组件中配置directives注册局部指令,在这里,全局指令更适合本场景,所以决定使用Vue.directive 开始编写123456789101112// main.jsimport &#123; CountUp &#125; from 'countup.js'Vue.directive('countUp', &#123; bind (el) &#123; el.countUpComponent = new CountUp(el, 0, &#123; duration: 1 &#125;) &#125;, update (el, binding) &#123; el.countUpComponent.update(binding.value || 0) &#125; &#125;) 在这里,bind方法只调用一次，指令第一次绑定到元素时调用。在这里可以进行初始化Countup对象,之所以不用inserted方法是因为根据文档描述,inserted方法并不一定可以获取到dom对象示例,这就会导致new Countup示例时报错在el对象上挂载实例对象,这样,在update触发时,可以执行update方法触发数字更新动画这里,binding对象可以获取到我们传给指令的参数,进而执行update方法 vue插件编写其实,上述代码已经可以实现功能了,但是为了降低代码的耦合性,我们可以将它封装成一个插件写vue插件需要暴露一个install方法,这个方法接收两个参数,第一个参数是Vue构造器，第二个参数是一个可选的选项对象1234567891011121314151617// countUp-directive.jsimport &#123; CountUp &#125; from 'countup.js'export default &#123; install (Vue, options) &#123; Vue.directive('countUp', &#123; bind (el) &#123; el.countUpComponent = new CountUp(el, 0, &#123; duration: 1 &#125;) &#125;, update (el, binding) &#123; el.countUpComponent.update(binding.value || 0) &#125; &#125;) &#125;&#125; 123// main.jsimport CountUp from './countup-directive'Vue.use(CountUp) 使用使用就很简单了,直接看代码1&lt;em v-countUp=&quot;countNumber&quot;&gt;&lt;/em&gt; 传入countNumber就可以了 相关文档Vue自定义指令Vue插件countup.js]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[也还好]]></title>
+    <url>%2Fblog%2F2019%2F10%2F04%2F%E4%B9%9F%E8%BF%98%E5%A5%BD%2F</url>
     <content type="text"><![CDATA[我现在坐在太阳底下来往的人都打着伞我不愿打伞我喜欢这个温度我看见一束花紫色的你知道我在说什么吗我是说凉薄也好]]></content>
   </entry>
   <entry>
