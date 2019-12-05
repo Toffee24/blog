@@ -326,6 +326,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/12/05/localstorage实现过期功能/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/12/05/localstorage实现过期功能/" class="post-title-link" itemprop="https://toffee24.github.io/blog/index.html">hack localstorage实现过期功能</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-05 10:31:32 / 修改时间：11:25:08" itemprop="dateCreated datePublished" datetime="2019-12-05T10:31:32+08:00">2019-12-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Window-localStorage"><a href="#Window-localStorage" class="headerlink" title="Window.localStorage"></a>Window.localStorage</h3><blockquote>
+<p>只读的’localStorage’属性允许你访问一个’Document’源（origin）的对象’Storage’；存储的数据将保存在浏览器会话中。’localStorage’ 类似 ‘sessionStorage’，但其区别在于：存储在 ‘localStorage’ 的数据可以长期保留；而当页面会话结束——也就是说，当页面被关闭时，存储在 ‘sessionStorage’ 的数据会被清除 。</p>
+</blockquote>
+<h3 id="localStorage用法"><a href="#localStorage用法" class="headerlink" title="localStorage用法"></a>localStorage用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'myCat'</span>, <span class="string">'Tom'</span>);</span><br><span class="line">localStorage.getItem(<span class="string">'myCat'</span>);</span><br><span class="line">localStorage.removeItem(<span class="string">'myCat'</span>);</span><br><span class="line"><span class="comment">// 移除所有</span></span><br><span class="line">localStorage.clear();</span><br></pre></td></tr></table></figure>
+<h3 id="hack"><a href="#hack" class="headerlink" title="hack"></a>hack</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> getItem = localStorage.getItem.bind(localStorage)</span><br><span class="line">  <span class="keyword">var</span> setItem = localStorage.setItem.bind(localStorage)</span><br><span class="line">  <span class="keyword">var</span> removeItem = localStorage.removeItem.bind(localStorage)</span><br><span class="line">  localStorage.setItem = <span class="function"><span class="keyword">function</span> (<span class="params">keyName, keyValue, expires</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (<span class="keyword">typeof</span> expires !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> expiresDate = <span class="keyword">new</span> <span class="built_in">Date</span>(expires).valueOf()</span><br><span class="line">        setItem(keyName + <span class="string">'_expires'</span>, expiresDate)</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="keyword">return</span> setItem(keyName, keyValue)</span><br><span class="line">  &#125;</span><br><span class="line">  localStorage.getItem = <span class="function"><span class="keyword">function</span> (<span class="params">keyName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> expires = getItem(keyName + <span class="string">'_expires'</span>)</span><br><span class="line">    <span class="keyword">if</span> (expires &amp;&amp; <span class="keyword">new</span> <span class="built_in">Date</span>() &gt; <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Number</span>(expires))) &#123;</span><br><span class="line">      removeItem(keyName)</span><br><span class="line">      removeItem(keyName + <span class="string">'_expires'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> getItem(keyName)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>原理:<br>先看<code>localStorage.setItem</code>方法,此方法接收第三个参数<code>expires</code>过期时间,该值为一个时间戳, 并且会同时在缓存中设置一个后缀为<code>_expires</code>的key,value为过期时间。<br>再看<code>localStorage.getItem</code>方法,先判断是否有取值的后缀名为<code>_expires</code>的值,如果有,再判断当前时间戳是否大于取值的时间戳,如果大于的话,就执行删除<code>removeItem</code>方法,将缓存中的两个值都删除,如果没有取到或者时间未到过期时间,则正常返回值。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/11/04/Vue插件以及自定义指令实践/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -950,178 +1097,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/09/12/搭建微前端架构/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Toffee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Toffee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/09/12/搭建微前端架构/" class="post-title-link" itemprop="https://toffee24.github.io/blog/index.html">搭建微前端架构</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-12 15:12:14" itemprop="dateCreated datePublished" datetime="2019-09-12T15:12:14+08:00">2019-09-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-09-24 16:16:43" itemprop="dateModified" datetime="2019-09-24T16:16:43+08:00">2019-09-24</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="什么是微前端"><a href="#什么是微前端" class="headerlink" title="什么是微前端"></a>什么是微前端</h3><p>微前端是一种类似于微服务的架构,它将微服务的理念应用于浏览器端,即将单页面前端应用由单一应用转变为把多个小型前端应用聚合为一的应用。各个前端应用还可以独立开发、独立部署。同时,它们也可以进行并行开发—这些组件可以通过NPM,GIT或者SVN来管理。</p>
-<h3 id="微前端架构特点"><a href="#微前端架构特点" class="headerlink" title="微前端架构特点"></a>微前端架构特点</h3><ul>
-<li>应用自治,即每个子应用之间不存在依赖关系,替换其中一个子应用而整体不受影响</li>
-<li>单一职责,即微前端架构应该满足单一职责的原则</li>
-<li>技术栈无关,即每个子应用可以用不同的前端框架去编写</li>
-</ul>
-<h3 id="微前端技术拆分方式"><a href="#微前端技术拆分方式" class="headerlink" title="微前端技术拆分方式"></a>微前端技术拆分方式</h3><h4 id="1-路由分发式"><a href="#1-路由分发式" class="headerlink" title="1.路由分发式"></a>1.路由分发式</h4><p>通过HTTP服务器的反向代理功能,将请求路由映射到对应的应用上</p>
-<h4 id="2-前端微服务化"><a href="#2-前端微服务化" class="headerlink" title="2.前端微服务化"></a>2.前端微服务化</h4><p>在不同的框架上设计通信和加载机制,以在一个页面内加载对应的应用</p>
-<h4 id="3-微应用"><a href="#3-微应用" class="headerlink" title="3.微应用"></a>3.微应用</h4><p>通过软件工程的方式,在部署构建环境中,把多个独立的应用组合成一个应用</p>
-<h4 id="4-微件化"><a href="#4-微件化" class="headerlink" title="4.微件化"></a>4.微件化</h4><p>将业务功能拆分成独立的chunk代码,加载即可运行</p>
-<h4 id="5-前端容器化"><a href="#5-前端容器化" class="headerlink" title="5.前端容器化"></a>5.前端容器化</h4><p>iframe</p>
-<h4 id="6-应用组件化"><a href="#6-应用组件化" class="headerlink" title="6.应用组件化"></a>6.应用组件化</h4><p>Web Components技术</p>
-<h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>这里我们将使用第二种方式,使用前端微服务化的方式将基于<code>create-react-app</code>脚手架搭建的react应用以及<code>vue-cli</code>搭建的vue应用合并在一个基座应用上,做到子应用可以独立开发,分别部署的同时也能做到合并在一起成为一个聚合应用<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/blog/2019/09/12/搭建微前端架构/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1171,7 +1146,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

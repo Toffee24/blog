@@ -326,6 +326,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/09/12/搭建微前端架构/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/09/12/搭建微前端架构/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/2/index.html">搭建微前端架构</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-12 15:12:14" itemprop="dateCreated datePublished" datetime="2019-09-12T15:12:14+08:00">2019-09-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-24 16:16:43" itemprop="dateModified" datetime="2019-09-24T16:16:43+08:00">2019-09-24</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="什么是微前端"><a href="#什么是微前端" class="headerlink" title="什么是微前端"></a>什么是微前端</h3><p>微前端是一种类似于微服务的架构,它将微服务的理念应用于浏览器端,即将单页面前端应用由单一应用转变为把多个小型前端应用聚合为一的应用。各个前端应用还可以独立开发、独立部署。同时,它们也可以进行并行开发—这些组件可以通过NPM,GIT或者SVN来管理。</p>
+<h3 id="微前端架构特点"><a href="#微前端架构特点" class="headerlink" title="微前端架构特点"></a>微前端架构特点</h3><ul>
+<li>应用自治,即每个子应用之间不存在依赖关系,替换其中一个子应用而整体不受影响</li>
+<li>单一职责,即微前端架构应该满足单一职责的原则</li>
+<li>技术栈无关,即每个子应用可以用不同的前端框架去编写</li>
+</ul>
+<h3 id="微前端技术拆分方式"><a href="#微前端技术拆分方式" class="headerlink" title="微前端技术拆分方式"></a>微前端技术拆分方式</h3><h4 id="1-路由分发式"><a href="#1-路由分发式" class="headerlink" title="1.路由分发式"></a>1.路由分发式</h4><p>通过HTTP服务器的反向代理功能,将请求路由映射到对应的应用上</p>
+<h4 id="2-前端微服务化"><a href="#2-前端微服务化" class="headerlink" title="2.前端微服务化"></a>2.前端微服务化</h4><p>在不同的框架上设计通信和加载机制,以在一个页面内加载对应的应用</p>
+<h4 id="3-微应用"><a href="#3-微应用" class="headerlink" title="3.微应用"></a>3.微应用</h4><p>通过软件工程的方式,在部署构建环境中,把多个独立的应用组合成一个应用</p>
+<h4 id="4-微件化"><a href="#4-微件化" class="headerlink" title="4.微件化"></a>4.微件化</h4><p>将业务功能拆分成独立的chunk代码,加载即可运行</p>
+<h4 id="5-前端容器化"><a href="#5-前端容器化" class="headerlink" title="5.前端容器化"></a>5.前端容器化</h4><p>iframe</p>
+<h4 id="6-应用组件化"><a href="#6-应用组件化" class="headerlink" title="6.应用组件化"></a>6.应用组件化</h4><p>Web Components技术</p>
+<h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>这里我们将使用第二种方式,使用前端微服务化的方式将基于<code>create-react-app</code>脚手架搭建的react应用以及<code>vue-cli</code>搭建的vue应用合并在一个基座应用上,做到子应用可以独立开发,分别部署的同时也能做到合并在一起成为一个聚合应用<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2019/09/12/搭建微前端架构/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/09/02/WebHook监听提交实现自动部署/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -931,166 +1103,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/07/19/chrome快捷键太反人类-不想安装额外插件-那就用TamperMonkey写个脚本/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Toffee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Toffee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/07/19/chrome快捷键太反人类-不想安装额外插件-那就用TamperMonkey写个脚本/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/2/index.html">chrome快捷键太反人类?不想安装额外插件?那就用TamperMonkey写个脚本</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-19 17:15:07" itemprop="dateCreated datePublished" datetime="2019-07-19T17:15:07+08:00">2019-07-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-22 10:49:30" itemprop="dateModified" datetime="2019-07-22T10:49:30+08:00">2019-07-22</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Chrome快捷键"><a href="#Chrome快捷键" class="headerlink" title="Chrome快捷键"></a>Chrome快捷键</h3><p>对于一天用到将近百余次的<code>ctrl</code>+<code>w</code>的我来说,一直觉得chrome原本的<code>ctrl</code>+<code>w</code>的按键有点别扭,终于在今天忍不住了,开始寻找如何去修改chrome默认的快捷键。在设置里找了一圈,发现没有,无奈google了一下,发现有这么几种办法</p>
-<ul>
-<li>安装chrome插件 如Shortkeys等</li>
-<li>修改chrome系统文件<br>我综合了一下,发现我只需要实现<code>alt</code> + <code>w</code>关闭浏览器TAB的功能,这么折腾似乎不太经济,突然想到我有安装<code>TamperMonkey</code>油猴插件,于是便想到自己动手写个js脚本完事</li>
-</ul>
-<h3 id="TamperMonkey"><a href="#TamperMonkey" class="headerlink" title="TamperMonkey"></a>TamperMonkey</h3><p>TamperMonkey是一个浏览器插件,它是一个脚本管理器,通过<a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">脚本市场</a>安装第三方js脚本,可以实现非常多的拓展功能,可以就不展开了<br>我们新建一个脚本文件,注意脚本文件开头 <code>match</code>选项表示脚本应用的范围,这里我们应用所有网站<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// @match        http://*/*</span><br><span class="line">// @match        https://*/*</span><br></pre></td></tr></table></figure></p>
-<h3 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h3><p>好了,下面就开始编写我们的脚本,TamperMonkey脚本文件实质就是输出个js IFFE(立即执行函数),<br>脚本内容都编写在里面,我们只需要全局监听<code>onkeydown</code>事件,判断是否同时按下<code>alt</code> + <code>w</code>,然后执行<code>window.close()</code>关闭页面就可以了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'keydown'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (event.altKey &amp;&amp; event.keyCode == <span class="number">87</span>) &#123;</span><br><span class="line">           <span class="built_in">window</span>.location.href = <span class="string">"about:blank"</span></span><br><span class="line">          <span class="built_in">window</span>.close()</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1140,7 +1152,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
