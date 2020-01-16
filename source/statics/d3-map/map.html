@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/d3/5.12.0/d3.js"></script>
+		<title>MAP</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			.map-content {
+				height: 400px;
+				width: 100%;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="map-content"></div>
+	</body>
+	<script>
+		// 定义常量
+		const mapCache = {}
+		const color = {
+			normalFill: '#7494ef',
+			hoverFill: '#ffbc46',
+			stroke: '#d5f2ff',
+			text: '#fff'
+		}
+		const svgId = 'mapSvg'
+		let path
+
+		// 绑定派发事件 监听窗口/下钻/鼠标事件
+		const dispatch = d3.dispatch('resize', 'drillDown', 'hover')
+		dispatch.on('resize', (res, dom) => {
+			window.addEventListener('resize', () => {
+				console.log('triggerResize', res.properties.name)
+				drawMap(res, dom)
+			})
+		})
+		dispatch.on('drillDown', dom => {
+			d3.select(dom)
+				.selectAll('path')
+				.on('click', function(d) {
+					const { name, level } = d.properties
+					if (level === 'district') return
+					const centroid = path.centroid(d)
+					const width = document.querySelector('.map-content').clientWidth
+					const height = document.querySelector('.map-content').clientHeight
+					d3.select('#' + svgId)
+						.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style(
+							'transform',
+							` scale(5) translate(${width / 2 - centroid[0]}px,${height / 2 -
+								centroid[1]}px)`
+						)
+						.style('opacity', 0.1)
+					setTimeout(() => {
+						d3.json(`./map/${name}.json`).then(res => {
+							drawMap(res, dom)
+						})
+					}, 300)
+				})
+			document.querySelector('#' + svgId).addEventListener('click', e => {
+				if (e.target.tagName == 'svg') {
+					d3.json('./map/江苏省.json').then(res => {
+						drawMap(res, '.map-content')
+					})
+				}
+			})
+		})
+		dispatch.on('hover', (e) => {
+			d3.selectAll('path').on('mouseover', function(d) {
+				d3.select(this).attr('fill', color.hoverFill)
+			})
+			d3.selectAll('path').on('mouseout', function(d) {
+				d3.select(this).attr('fill', color.normalFill)
+			})
+			d3.selectAll('path').on('mousemove', function(d) {
+				console.log(d3.mouse(this))
+			})
+		})
+
+		d3.json('./map/江苏省.json').then(res => {
+			drawMap(res, '.map-content')
+			dispatch.apply('resize', this, [res, '.map-content'])
+		})
+		// 绘制地图方法
+		function drawMap(res, dom) {
+			const width = document.querySelector('.map-content').clientWidth
+			const height = document.querySelector('.map-content').clientHeight
+			d3.select('#' + svgId).remove()
+			const projection = d3.geoMercator()
+			projection.fitExtent(
+				[
+					[20, 20],
+					[width - 20, height - 20]
+				],
+				res
+			)
+			path = d3.geoPath().projection(projection)
+			const mapG = d3
+				.select(dom)
+				.append('svg')
+				.attr('id', svgId)
+				.attr('width', width)
+				.attr('height', height)
+				.style('transform', 'scale(2)')
+				.style('opacity', 0.1)
+			mapG
+				.selectAll('path')
+				.data(res.features, d => {
+					d.data = {
+						value: d3.randomUniform(1,10000)()
+					}
+				})
+				.enter()
+				.append('path')
+				.data(res.features)
+				.attr('stroke', color.stroke)
+				.attr('stroke-width', 1)
+				.attr('fill', color.normalFill)
+				.attr('d', path)
+				.attr('cursor', 'pointer')
+
+			mapG
+				.selectAll('text')
+				.data(res.features)
+				.enter()
+				.append('text')
+				.text(d => {
+					return d.properties.name
+				})
+				.style('transform', d => {
+					const centroid = path.centroid(d)
+					return `translate(${centroid[0] -
+						(d.properties.name.length / 2) * 14}px, ${centroid[1]}px)`
+				})
+				.attr('fill', color.text)
+				.attr('cursor', 'pointer')
+				.attr('font-size', '12px')
+
+			mapG
+				.transition()
+				.duration(300)
+				.ease(d3.easeLinear)
+				.style('transform', 'scale(1)')
+				.style('opacity', 1)
+
+			dispatch.call('hover')
+			dispatch.call('drillDown', this, '.map-content')
+		}
+	</script>
+</html>
