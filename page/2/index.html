@@ -326,6 +326,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/09/20/用eslint,prettier,pre-commit规范前端代码/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/09/20/用eslint,prettier,pre-commit规范前端代码/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/2/index.html">用eslint & prettier & pre-commit规范前端代码格式</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-20 15:34:34" itemprop="dateCreated datePublished" datetime="2019-09-20T15:34:34+08:00">2019-09-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-24 16:00:09" itemprop="dateModified" datetime="2019-09-24T16:00:09+08:00">2019-09-24</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>每个人的代码风格不一,但对于团队来说,代码风格的统一有助于团队之间的协作,良好的代码风格更会令人赏心悦目。但是现实总会不如愿,可能一开始很规范的项目随着工作进度的推展,代码也会变得凌乱。人为的进行代码风格检查无疑是一种低效率且不可靠的方式,所以我们需要借助工具来进行强制的代码风格检查</p>
+<h3 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h3><p>ESLint是一个用来识别 ECMAScript 并且按照规则给出报告的代码检测工具，使用它可以避免低级错误和统一代码的风格。ESLint被设计为完全可配置的，主要有两种方式来配置ESLint：</p>
+<ul>
+<li>在注释中配置：使用JavaScript注释直接把配置嵌入到JS文件中。</li>
+<li>配置文件：使用下面任一的文件来为全部的目录和它的子目录指定配置信息<ul>
+<li>javascript：使用.eslintrc.js文件并导出一个包含配置的对象。</li>
+<li>YAML：.eslintrc.yaml或者.eslintrc.yml</li>
+<li>JSON：.eslintrc.json，并且此文件允许使用JS形式的注释</li>
+<li>废弃的用法：.eslintrc，此文件可以是JSON或者YAML</li>
+<li>package.json：在package.json文件中创建eslintConfig属性，所有的配置包含在此属性中</li>
+</ul>
+</li>
+</ul>
+<p>这些文件的优先级则是按照以上出现的顺序（<code>.eslintrc.js</code> &gt; <code>.eslintrc.yaml</code> &gt; <code>.eslintrc.yml</code> &gt; <code>.eslintrc.json</code>&gt; <code>.eslintrc</code> &gt; <code>package.json</code>）</p>
+<p>可以被配置的信息主要分为3类：</p>
+<ul>
+<li>Environments：你的 javascript 脚步将要运行在什么环境（如：nodejs，browser，commonjs等）中。</li>
+<li>Globals：执行代码时脚步需要访问的额外全局变量。</li>
+<li>Rules：开启某些规则，也可以设置规则的等级。</li>
+</ul>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p><code>yarn add eslint</code> 或者全局安装 <code>yarn global add eslint</code></p>
+<h4 id="规则配置"><a href="#规则配置" class="headerlink" title="规则配置"></a>规则配置</h4>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2019/09/20/用eslint,prettier,pre-commit规范前端代码/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/09/12/搭建微前端架构/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -958,156 +1139,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2019/08/21/transition实现原生页面跳转效果/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Toffee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Toffee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/08/21/transition实现原生页面跳转效果/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/2/index.html">vue transition实现原生页面跳转效果</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-21 11:00:11 / 修改时间：11:11:46" itemprop="dateCreated datePublished" datetime="2019-08-21T11:00:11+08:00">2019-08-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>使用Vue <code>&lt;transition&gt;</code> 组件过渡</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;transition :name=&quot;this.$store.routeAction&quot;&gt;</span><br><span class="line">     &lt;router-view/&gt;</span><br><span class="line">&lt;/transition&gt;</span><br></pre></td></tr></table></figure>
-<p>CSS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">.push-enter-active,.push-leave-active</span><br><span class="line">, .pop-enter-active,.pop-leave-active&#123;</span><br><span class="line">  transition: all 0.4s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.push-leave-to&#123;</span><br><span class="line">transform: translate(-20%,0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.push-enter &#123;</span><br><span class="line">  transform: translate(100%, 0);</span><br><span class="line">&#125;</span><br><span class="line">.push-enter-active &#123;</span><br><span class="line">  z-index: 10;</span><br><span class="line">&#125;</span><br><span class="line">.push-leave-active &#123;</span><br><span class="line">  z-index: 0;</span><br><span class="line">&#125;</span><br><span class="line">.pop-leave-active &#123;</span><br><span class="line">  transform: translate(100%, 0);</span><br><span class="line">  z-index: 11;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.pop-enter&#123;</span><br><span class="line">  transform: translate(-20%,0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="/blog/images/vue-transition.gif" alt="image"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/8/">8</a><a class="extend next" rel="next" href="/blog/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1152,7 +1188,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1243,7 +1279,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
