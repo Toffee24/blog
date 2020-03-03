@@ -326,6 +326,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/12/12/event-bus发布订阅实现/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Toffee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Toffee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2018/12/12/event-bus发布订阅实现/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/6/index.html">event-bus发布订阅实现</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-12 17:10:15" itemprop="dateCreated datePublished" datetime="2018-12-12T17:10:15+08:00">2018-12-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-15 23:55:59" itemprop="dateModified" datetime="2018-12-15T23:55:59+08:00">2018-12-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一个简单的实现了事件注册,订阅,注销的eventEmeitter</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventEmeitter</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>._events = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    emit(type,context,...args)&#123;</span><br><span class="line">        <span class="keyword">const</span> handler = <span class="keyword">this</span>._events.get(type)</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> handler !== <span class="string">'function'</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">`[<span class="subst">$&#123;type&#125;</span>] 未绑定事件`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(args.length &gt;= <span class="number">3</span>)&#123;</span><br><span class="line">            handler.apply(context,args)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            handler.call(context,...args)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addEventListener(type,fn)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span>._events.get(type))&#123;</span><br><span class="line">            <span class="keyword">this</span>._events.set(type,fn)</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`[<span class="subst">$&#123;type&#125;</span>] 事件绑定`</span>)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">`[<span class="subst">$&#123;type&#125;</span>] 事件已绑定`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    removeEventListener(type)&#123;</span><br><span class="line">        <span class="keyword">this</span>._events.delete(type)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`[<span class="subst">$&#123;type&#125;</span>] 事件移除`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> emitter = <span class="keyword">new</span> EventEmeitter()</span><br><span class="line">emitter.addEventListener(<span class="string">'christmas'</span>,s=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Merry <span class="subst">$&#123;s&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br><span class="line">emitter.emit(<span class="string">'christmas'</span>,<span class="keyword">this</span>,<span class="string">'Christmas'</span>)</span><br><span class="line">emitter.removeEventListener(<span class="string">'Christmas'</span>)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">[christmas] 事件绑定</span><br><span class="line">Merry Christmas</span><br><span class="line">[Christmas] 事件移除</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/12/05/两数之和/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -927,155 +1082,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://toffee24.github.io/blog/blog/2018/11/14/cron定时器写法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Toffee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Toffee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2018/11/14/cron定时器写法/" class="post-title-link" itemprop="https://toffee24.github.io/blog/page/6/index.html">cron定时器写法</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-14 15:53:33 / 修改时间：16:00:57" itemprop="dateCreated datePublished" datetime="2018-11-14T15:53:33+08:00">2018-11-14</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>corn命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令,例如Jenkins定时任务等.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*    *    *    *    *    *</span><br><span class="line">┬    ┬    ┬    ┬    ┬    ┬</span><br><span class="line">│    │    │    │    │    |</span><br><span class="line">│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)</span><br><span class="line">│    │    │    │    └───── month (1 - 12)</span><br><span class="line">│    │    │    └────────── day of month (1 - 31)</span><br><span class="line">│    │    └─────────────── hour (0 - 23)</span><br><span class="line">│    └──────────────────── minute (0 - 59)</span><br><span class="line">└───────────────────────── second (0 - 59, optional)</span><br></pre></td></tr></table></figure></p>
-<p>在一个区域里填写多个数值的方法：</p>
-<ul>
-<li>逗号（’,’）分开的值，例如：“1,3,4,7,8”</li>
-<li>连词符（’-‘）指定值的范围，例如：“1-6”，意思等同于“1,2,3,4,5,6”</li>
-<li>星号（’*’）代表任何可能的值。例如，在“小时域”里的星号等于是“每一个小时”，等等</li>
-</ul>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//每三小时准点执行一次</span><br><span class="line">cron: &apos;0 0 */3 * * *&apos;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1125,7 +1131,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
